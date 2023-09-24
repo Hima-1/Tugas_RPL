@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package com.kel5.ecommerce.service;
 
 import com.kel5.ecommerce.dto.UserDto;
@@ -17,10 +14,13 @@ public interface UserService {
     UserDto findUserDtoByEmail(String email);
 
     User findUserByName(String name);
+
+    boolean forgotPassword(String email);
+
+    void changePassword(String email, String newPassword);
+
     public List<UserDto> getUsers();
     public List<UserDto> getUsersUser();
-
-    int getJmlUser();
 
     void confirmEmail(String confirmationToken);
 }

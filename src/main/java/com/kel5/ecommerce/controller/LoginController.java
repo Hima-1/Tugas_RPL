@@ -2,6 +2,7 @@ package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.dto.UserDto;
 import com.kel5.ecommerce.entity.User;
+import com.kel5.ecommerce.repository.ConfirmationTokenRepository;
 import com.kel5.ecommerce.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +25,22 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
 
     @RequestMapping("/login")
     public String loginForm(ModelMap model) {
         String username = getLogedinUsername();
 
         model.put("name", username);
-        return "login/login";
+        return "autentifikasi/pages-login";
     }
 
     @GetMapping("/registration")
     public String registrationForm(Model model) {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
-        return "login/register";
+        return "autentifikasi/pages-register";
     }
 
     @PostMapping("/registration")
@@ -53,7 +56,7 @@ public class LoginController {
 
         if (result.hasErrors()) {
             model.addAttribute("user", userDto);
-            return "login/register";
+            return "autentifikasi/pages-register";
         }
 
         userService.saveUser(userDto);
@@ -64,6 +67,53 @@ public class LoginController {
     public String confirmEmail(@RequestParam("token") String confirmationToken, Model model) {
         userService.confirmEmail(confirmationToken);
         System.out.println(confirmationToken);
-        return "redirect:/registration";
+        return "redirect:/login?success";
+    }
+
+    @GetMapping("/change-password")
+    public String changePassword(@RequestParam("token") String confirmationToken, Model model) {
+        User existingUser = confirmationTokenRepository.findByConfirmationToken(confirmationToken).getUser();
+        model.addAttribute("confirmationToken", confirmationToken);
+        if (existingUser != null) {
+            return "autentifikasi/pages-change_password";
+        }
+        else
+            return "redirect:/forgot_password?invalid";
+    }
+
+    @PostMapping("/change-password")
+    public String processChangePassword(
+            @RequestParam("token") String confirmationToken,
+            @RequestParam("password") String password,
+            @RequestParam("retypePassword") String retypePassword,
+            Model model) {
+
+        User existingUser = confirmationTokenRepository.findByConfirmationToken(confirmationToken).getUser();
+
+        if (existingUser != null) {
+            if (password.equals(retypePassword)) {
+                userService.changePassword(confirmationToken, password);
+                return "redirect:/login?changed";
+            } else {
+                model.addAttribute("error", "Password and retype password do not match.");
+                return "autentifikasi/pages-change_password";
+            }
+        } else {
+            return "redirect:/forgot_password?invalid";
+        }
+    }
+
+    @GetMapping("/forgot_password")
+    public String forgotPassword(Model model) {
+        return "autentifikasi/pages-forgot_password";
+    }
+
+    @PostMapping("/forgot_password")
+    public String processEmail(@RequestParam("email") String email) {
+        boolean result = userService.forgotPassword(email);
+        if (result)
+            return "autentifikasi/pages-check_email";
+        else
+            return "redirect:/forgot_password?fail";
     }
 }

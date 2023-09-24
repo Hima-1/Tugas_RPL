@@ -40,6 +40,8 @@ public class SpringSecurityConfig{
         http.csrf().disable()
                     .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/registration/**").permitAll()
+                        .requestMatchers("/change-password").permitAll()
+                        .requestMatchers("/forgot_password").permitAll()
                         .requestMatchers("/confirm-account").permitAll()
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/images/**").permitAll()

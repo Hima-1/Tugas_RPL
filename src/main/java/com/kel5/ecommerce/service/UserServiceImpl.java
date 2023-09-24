@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static com.kel5.ecommerce.mapper.UserMapper.mapToUserDto;
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         ConfirmationToken confirmationToken = new ConfirmationToken(user);
-
+        confirmationToken.setConfirmationToken(UUID.randomUUID().toString());
         confirmationTokenRepository.save(confirmationToken);
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -68,6 +69,37 @@ public class UserServiceImpl implements UserService {
         emailService.sendEmail(mailMessage);
 
         System.out.println("Confirmation Token: " + confirmationToken.getConfirmationToken());
+    }
+
+    @Override
+    public boolean forgotPassword(String email) {
+        User user = userRepository.findByEmail(email);
+
+        if (user != null) {
+            ConfirmationToken confirmationToken = confirmationTokenRepository.findByUser(user);
+
+            confirmationTokenRepository.save(confirmationToken);
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setFrom("himaspot@gmail.com");
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setSubject("Change Password");
+            mailMessage.setText("To change your account, please click here : "
+                    +"http://localhost:8080/change-password?token="+confirmationToken.getConfirmationToken());
+            emailService.sendEmail(mailMessage);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void changePassword(String token, String newPassword){
+        User user = confirmationTokenRepository.findByConfirmationToken(token).getUser();
+
+        if (user != null) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
     }
 
     @Override
@@ -93,16 +125,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getJmlUser() {
-        return getUsersUser().size();
-    }
-
-    @Override
     public void confirmEmail(String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
             User user = userRepository.findByEmail(token.getUser().getEmail());
-            user.setEnabled(true);
-            userRepository.save(user);
+            if (user != null) {
+                user.setEnabled(true);
+                userRepository.save(user);
+            }
     }
 
     @Override
