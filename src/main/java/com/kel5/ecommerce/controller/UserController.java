@@ -27,7 +27,11 @@ public class UserController {
     @GetMapping("/")
     public String registrationForm(ModelMap model) {
         User user = userService.findUserByEmail(getLogedinUsername());
+        if(user.isEnabled()) {
             model.put("user", user);
             return "user";
+        }
+        else
+            return "autentifikasi/pages-login";
     }
 }

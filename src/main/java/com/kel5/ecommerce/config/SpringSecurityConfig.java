@@ -43,6 +43,7 @@ public class SpringSecurityConfig{
                         .requestMatchers("/change-password").permitAll()
                         .requestMatchers("/forgot_password").permitAll()
                         .requestMatchers("/confirm-account").permitAll()
+                        .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
