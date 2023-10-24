@@ -18,7 +18,7 @@ public class Branch {
     private String branchName;
     private String phone;
 
-    @ManyToOne
+    @OneToOne
     private Address address;
 }
 
