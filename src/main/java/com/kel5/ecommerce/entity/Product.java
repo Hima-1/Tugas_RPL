@@ -3,6 +3,7 @@ package com.kel5.ecommerce.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,11 @@ public class Product {
     private float price;
     private int stock;
     private float weight;
-    private Image image;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "product_id")
+    private List<Image> image = new ArrayList<>();
+
     private String status;
 
     @OneToMany(mappedBy = "product")

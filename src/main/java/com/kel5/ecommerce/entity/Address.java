@@ -21,7 +21,12 @@ public class Address {
     private String city;
     private String province;
 
+<<<<<<< Updated upstream
     @OneToMany(mappedBy = "address")
     private List<Branch> branches;
+=======
+    @OneToOne(mappedBy = "address")
+    private Branch branch;
+>>>>>>> Stashed changes
 }
 
