@@ -5,7 +5,7 @@
 package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.service.ProductService;
-import com.kel5.ecommerce.dto.ProductDto;
+import com.kel5.ecommerce.dto.ProductDTO;
 import com.kel5.ecommerce.entity.Image;
 import com.kel5.ecommerce.repository.ImageRepository;
 import jakarta.validation.Valid;
@@ -36,14 +36,14 @@ public class ProductController {
     
     @GetMapping("/products")
     public String products(Model model){
-        List<ProductDto> productDtos = this.productService.showData();
+        List<ProductDTO> productDtos = this.productService.showData();
         model.addAttribute("productDtos", productDtos);
         return "/products";
     }
     
     @GetMapping("/products/add")
     public String addProductForm(Model model){
-        ProductDto productDto = new ProductDto();
+        ProductDTO productDto = new ProductDTO();
         List<Image> listImages = imageRepository.findAll();
         model.addAttribute("listImages", listImages);
         model.addAttribute("ProductDto", productDto);
@@ -51,7 +51,7 @@ public class ProductController {
     }
     
     @PostMapping("/products/add/save")
-    public String addProduct(@Valid ProductDto productDto, BindingResult result){
+    public String addProduct(@Valid ProductDTO productDto, BindingResult result){
         if(result.hasErrors()){
             return "/products_add_form";
         }
@@ -61,7 +61,7 @@ public class ProductController {
     
     @GetMapping("/products/{productId}/update")
     public String updateProduct (@PathVariable("productId") Long pdtId, Model model) {
-        ProductDto pdtDto = productService.findProductById(pdtId);
+        ProductDTO pdtDto = productService.findProductById(pdtId);
         List<Image> listImages = imageRepository.findAll();
         model.addAttribute("listImages", listImages);
         model.addAttribute("productDto", pdtDto);
@@ -69,7 +69,7 @@ public class ProductController {
     }
     
     @PostMapping("/products/update")
-    public String updateProducts (@Valid ProductDto pdtDto, BindingResult result){
+    public String updateProducts (@Valid ProductDTO pdtDto, BindingResult result){
         if(result.hasErrors()){
             return "/products_update_form";
         }

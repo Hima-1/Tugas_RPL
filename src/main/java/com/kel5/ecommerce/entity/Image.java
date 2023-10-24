@@ -1,10 +1,17 @@
 package com.kel5.ecommerce.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.sql.Blob;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "image_table")
 public class Image {
     @Id

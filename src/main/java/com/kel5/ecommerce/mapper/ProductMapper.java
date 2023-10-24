@@ -1,41 +1,42 @@
 package com.kel5.ecommerce.mapper;
 
-import com.kel5.ecommerce.dto.ProductDto;
+import com.kel5.ecommerce.dto.ProductDTO;
 import com.kel5.ecommerce.entity.Image;
 import com.kel5.ecommerce.entity.Product;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.kel5.ecommerce.entity.Category;
+
 public class ProductMapper {
-    public static ProductDto mapToProductDto(Product product) {
-        ProductDto productDto = ProductDto.builder()
+    public static ProductDTO toProductDTO(Product product) {
+        return ProductDTO.builder()
                 .id(product.getId())
-                .productID(product.getProductID())
                 .nama(product.getNama())
                 .deskripsi(product.getDeskripsi())
                 .harga(product.getHarga())
                 .stok(product.getStok())
                 .berat(product.getBerat())
-                .image(product.getImage())
-                .createdOn(product.getCreatedOn())
-                .updatedOn(product.getUpdatedOn())
+                .categories(product.getCategories().stream().map(CategoryMapper::toCategoryDTO).collect(Collectors.toList()))
+                .images(product.getImage().stream().map(ImageMapper::toImageDTO).collect(Collectors.toList()))
                 .build();
-        return productDto;
     }
-    public static Product mapToProduct(ProductDto productDto) {
-        Product product = Product.builder()
-                .id(productDto.getId())
-                .productID(productDto.getProductID())
-                .nama(productDto.getNama())
-                .deskripsi(productDto.getDeskripsi())
-                .harga(productDto.getHarga())
-                .stok(productDto.getStok())
-                .berat(productDto.getBerat())
-                .image(productDto.getImage())
-                .createdOn(productDto.getCreatedOn())
-                .updatedOn(productDto.getUpdatedOn())
+
+    // Product: DTO to Entity
+    public static Product toProductEntity(ProductDTO productDTO) {
+        return Product.builder()
+                .id(productDTO.getId())
+                .nama(productDTO.getNama())
+                .deskripsi(productDTO.getDeskripsi())
+                .harga(productDTO.getHarga())
+                .stok(productDTO.getStok())
+                .berat(productDTO.getBerat())
+                // For categories and images, you'll need to fetch or create instances as they involve relations
                 .build();
-        return product;
     }
-    
+
+    public static List<ProductDTO> toProductDTOs(List<Product> products) {
+        return products.stream().map(ProductMapper::toProductDTO).collect(Collectors.toList());
+    }
 }

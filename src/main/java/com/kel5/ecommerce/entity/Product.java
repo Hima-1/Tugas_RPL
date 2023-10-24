@@ -4,14 +4,8 @@
  */
 package com.kel5.ecommerce.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -39,10 +33,7 @@ public class Product {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable = false)
-    private String productID;
-    
+
     @Column(nullable = false)
     private String nama;
     
@@ -50,7 +41,7 @@ public class Product {
     private String deskripsi;
     
     @Column(nullable = false)
-    private double harga;
+    private Long harga;
     
     @Column(nullable = false)
     private int stok;
@@ -60,6 +51,14 @@ public class Product {
     
     @OneToMany
     private List<Image> image;
+
+    @ManyToMany
+    @JoinTable(
+            name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
     
     @Column(nullable = false)
     @CreationTimestamp

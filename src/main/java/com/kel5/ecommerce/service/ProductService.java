@@ -4,7 +4,7 @@
  */
 package com.kel5.ecommerce.service;
 
-import com.kel5.ecommerce.dto.ProductDto;
+import com.kel5.ecommerce.dto.ProductDTO;
 import java.util.List;
 
 /**
@@ -12,9 +12,9 @@ import java.util.List;
  * @author pinaa
  */
 public interface ProductService {
-    public List<ProductDto> showData();
+    public List<ProductDTO> showData();
     public void deleteData(Long productId);
-    public void updateData(ProductDto productDto);
-    public void saveData(ProductDto productDto);
-    public ProductDto findProductById(Long id);
+    public void updateData(ProductDTO productDto);
+    public void saveData(ProductDTO productDto);
+    public ProductDTO findProductById(Long id);
 }

@@ -4,7 +4,7 @@
  */
 package com.kel5.ecommerce.service.impl;
 
-import com.kel5.ecommerce.dto.ProductDto;
+import com.kel5.ecommerce.dto.ProductDTO;
 import com.kel5.ecommerce.entity.Product;
 import com.kel5.ecommerce.mapper.ProductMapper;
 import com.kel5.ecommerce.repository.ProductRepository;
@@ -27,9 +27,9 @@ public class ProductServiceImpl implements ProductService{
     }
     
     @Override
-    public List<ProductDto> showData() {
+    public List<ProductDTO> showData() {
         List<Product> products = this.productRepository.findAll();
-        List<ProductDto> productDtos = products.stream()
+        List<ProductDTO> productDtos = products.stream()
                 .map((product) -> (ProductMapper.mapToProductDto(product)))
                 .collect(Collectors.toList());        
         return productDtos;
@@ -41,20 +41,20 @@ public class ProductServiceImpl implements ProductService{
     }
     
     @Override
-    public void updateData(ProductDto productDto) {
+    public void updateData(ProductDTO productDto) {
         Product product = ProductMapper.mapToProduct(productDto);
         System.out.println(productDto);
         productRepository.save(product);
     }
     
     @Override
-    public void saveData(ProductDto productDto) {
+    public void saveData(ProductDTO productDto) {
         Product product = ProductMapper.mapToProduct(productDto);
         productRepository.save(product);
     }
 
     @Override
-    public ProductDto findProductById(Long id) {
+    public ProductDTO findProductById(Long id) {
         Product pdt = productRepository.findById(id).get();
         return  ProductMapper.mapToProductDto(pdt);
     }
