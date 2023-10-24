@@ -3,6 +3,9 @@ package com.kel5.ecommerce.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,8 +20,10 @@ public class Article {
     private int id;
     private String title;
     private String content;
-    @OneToOne
-    private Image image;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "article_id")
+    private List<Image> image = new ArrayList<Image>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
