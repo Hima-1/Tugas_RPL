@@ -2,7 +2,8 @@ package com.kel5.ecommerce.entity;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.UUID;
@@ -10,9 +11,6 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name="confirmationToken")
 public class ConfirmationToken {
 
@@ -30,6 +28,8 @@ public class ConfirmationToken {
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
+
+    public ConfirmationToken() {}
 
     public ConfirmationToken(User user) {
         this.user = user;

@@ -1,47 +1,73 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.kel5.ecommerce.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.ArrayList;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import java.util.Date;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-@Getter
+/**
+ *
+ * @author pinaa
+ */
+
 @Setter
-@Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "product")
+@Builder
+@Entity
+@Table(name = "products")
 public class Product {
-
-    @Id
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    private String description;
-    private float price;
-    private int stock;
-    private float weight;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "product_id")
-    private List<Image> image = new ArrayList<>();
-
-    private String status;
-
-    @OneToMany(mappedBy = "product")
-    private List<OrderItem> orderItems;
-
-    @OneToMany(mappedBy = "product")
-    private List<CartItem> cartItems;
-
-    @ManyToMany
-    @JoinTable(
-            name = "product_category",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
+    private Long id;
+    
+    @Column(nullable = false)
+    private String productID;
+    
+    @Column(nullable = false)
+    private String nama;
+    
+    @Column(nullable = true)
+    private String deskripsi;
+    
+    @Column(nullable = false)
+    private double harga;
+    
+    @Column(nullable = false)
+    private int stok;
+    
+    @Column(nullable = false)
+    private double berat;
+    
+    @OneToMany
+    private List<Image> image;
+    
+    @Column(nullable = false)
+    @CreationTimestamp
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date createdOn;
+    
+    @UpdateTimestamp
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date updatedOn; 
+    
 }
-
