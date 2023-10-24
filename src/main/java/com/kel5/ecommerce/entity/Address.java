@@ -21,7 +21,7 @@ public class Address {
     private String city;
     private String province;
 
-    @OneToMany(mappedBy = "address")
-    private List<Branch> branches;
+    @OneToOne(mappedBy = "address")
+    private Branch branche;
 }
 
