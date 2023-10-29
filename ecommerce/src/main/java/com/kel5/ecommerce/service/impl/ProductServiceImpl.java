@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,8 +29,17 @@ public class ProductServiceImpl implements ProductService {
         Product product = ProductMapper.toEntity(productDto);
         List<Image> images = new ArrayList<>();
 
+        String baseDir = System.getProperty("user.dir");
+        String targetDir = baseDir + "/productsImages/";
+
+        // Create the directory if it doesn't exist
+        File directory = new File(targetDir);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
         for (MultipartFile file : productDto.getImages()) {
-            Path path = Paths.get("C:/Users/hp/Documents/GitHub/Tugas_RPL/productsImages/" + file.getOriginalFilename());
+            Path path = Paths.get(targetDir + file.getOriginalFilename());
             Files.write(path, file.getBytes());
 
             Image image = new Image();
@@ -40,6 +50,7 @@ public class ProductServiceImpl implements ProductService {
         product.setImage(images);
         return productRepository.save(product);
     }
+
 
     @Override
     public List<Product> getAllProducts() {
