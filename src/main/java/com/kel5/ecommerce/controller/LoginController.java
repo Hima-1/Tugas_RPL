@@ -33,14 +33,14 @@ public class LoginController {
         String username = getLogedinUsername();
 
         model.put("name", username);
-        return "autentifikasi/pages-login";
+        return "autentifikasi/login";
     }
 
     @GetMapping("/registration")
     public String registrationForm(Model model) {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
-        return "autentifikasi/pages-register";
+        return "autentifikasi/register";
     }
 
     @PostMapping("/registration")
@@ -56,7 +56,7 @@ public class LoginController {
 
         if (result.hasErrors()) {
             model.addAttribute("user", userDto);
-            return "autentifikasi/pages-register";
+            return "autentifikasi/register";
         }
 
         userService.saveUser(userDto);
@@ -75,7 +75,7 @@ public class LoginController {
         User existingUser = confirmationTokenRepository.findByConfirmationToken(confirmationToken).getUser();
         model.addAttribute("confirmationToken", confirmationToken);
         if (existingUser != null) {
-            return "autentifikasi/pages-change_password";
+            return "autentifikasi/lupapassword";
         }
         else
             return "redirect:/forgot_password?invalid";
@@ -96,7 +96,7 @@ public class LoginController {
                 return "redirect:/login?changed";
             } else {
                 model.addAttribute("error", "Password and retype password do not match.");
-                return "autentifikasi/pages-change_password";
+                return "autentifikasi/lupapassword";
             }
         } else {
             return "redirect:/forgot_password?invalid";
@@ -105,7 +105,7 @@ public class LoginController {
 
     @GetMapping("/forgot_password")
     public String forgotPassword(Model model) {
-        return "autentifikasi/pages-forgot_password";
+        return "autentifikasi/lupapassword";
     }
 
     @PostMapping("/forgot_password")
