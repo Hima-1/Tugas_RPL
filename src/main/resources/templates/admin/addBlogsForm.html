@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Profil</title>
+  <title>Add Blog dan Artikel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -16,6 +16,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/190d988d17.js" crossorigin="anonymous"></script>
 
   <!-- Vendor CSS Files -->
   <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -28,6 +29,18 @@
 
   <!-- Template Main CSS File -->
   <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Aug 30 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <!-- tambahan -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -154,168 +167,68 @@
 
   </aside>
   <!-- End Sidebar-->
-    
-  <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Profil</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">User</li>
-          <li class="breadcrumb-item active">Profil</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+ <main id="main" class="main">
 
-    <section class="section profile">
-      <div class="row">
-        <div class="col-xl-4">
-
+  <div class="pagetitle">
+    <h1>Tambah Artikel</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Artikel dan Blog</li>
+        <li class="breadcrumb-item active">Tambah</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
           <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+            <div class="card-body">
+              <h5 class="card-title">Fill the Information</h5>
 
-              <img src="assets/img/fira.jpg" alt="Profile" class="rounded-circle">
-              <h2>Zahra Safira Haryono</h2>
-              <h3>Desainer</h3>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-xl-8">
-
-          <div class="card">
-            <div class="card-body pt-3">
-              <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
-
-                <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Ringkasan</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profil</button>
-                </li>
-              </ul>
-              <div class="tab-content pt-2">
-
-                <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">Detail Profil</h5>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                    <div class="col-lg-9 col-md-8">Zahra Safira Haryono</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Nama Panggilan</div>
-                    <div class="col-lg-9 col-md-8">Fira</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Alamat</div>
-                    <div class="col-lg-9 col-md-8">Masaran, Sragen, Jawa Tengah</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Jobdesk</div>
-                    <div class="col-lg-9 col-md-8">Desainer</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Nomor Telepon</div>
-                    <div class="col-lg-9 col-md-8">081234567890</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">zahra@example.com</div>
-                  </div>
-
+              <!-- Multi Columns Form -->
+              <form class="row g-3" th:action="@{/user/saveBlog}" th:object="${blog}" method="post" enctype="multipart/form-data">
+                <div class="col-md-12">
+                  <label for="blogName" class="form-label">Blog Name</label>
+                  <input type="text" th:field="*{name}" class="form-control" id="blogName" placeholder="Blog Name">
                 </div>
-
-                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                  <!-- Profile Edit Form -->
-                  <form>
-                    <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                      <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/fira.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="nama" type="text" class="form-control" id="nama" value="Zahra Safira Haryono">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Panggilan</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="nama" type="text" class="form-control" id="nama" value="Fira">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="alamat" type="text" class="form-control" id="alamat" value="Masaran, Sragen, Jawa Tengah">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Jobdesk" class="col-md-4 col-lg-3 col-form-label">Jobdesk</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="divisi" type="text" class="form-control" id="Jobdesk" value="Desainer">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="noTel" class="col-md-4 col-lg-3 col-form-label">Nomor Telepon</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="noTel" type="text" class="form-control" id="noTel" value="081234567890">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="zahra@example.com">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                    </div>
-                  </form><!-- End Profile Edit Form -->
-
+                <div class="col-md-12">
+                  <label for="blogDesc" class="form-label">Blog Description</label>
+                  <input type="text" th:field="*{deskripsi}" class="form-control" id="blogDesc" placeholder="Blog Description">
                 </div>
-
-              </div><!-- End Bordered Tabs -->
-
+                <div class="col-md-6">
+                  <label for="photos" class="form-label"> Blog Thumbnail</label>
+                  <input type="file" name="image" accept="image/png, image/jpeg" class="form-control" id="photos">
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                      Check me out
+                    </label>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- End Multi Columns Form -->
+              <a th:href="@{/user/artikel}"> Back to Blog </a>
             </div>
           </div>
 
         </div>
       </div>
-    </section>
-
-  </main><!-- End #main -->
+  </div>
+  </section>
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
-    <div class="credits">
-      Designed by <a href="">Kelompok 5</a>
-    </div>
-  </footer><!-- End Footer -->
+   <div class="credits">
+     Designed by <a href="">Kelompok 5</a>
+   </div>
+ </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

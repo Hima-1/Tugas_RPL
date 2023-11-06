@@ -5,8 +5,10 @@
 package com.kel5.ecommerce.service;
 
 import com.kel5.ecommerce.entity.Announcement;
+import com.kel5.ecommerce.entity.Blog;
 
 import java.util.List;
+import org.springframework.data.domain.Page;
 
 
 
@@ -21,6 +23,7 @@ public interface AnnouncementService {
     
     void deleteAnnouncementById(long id);
     List<Announcement> getAllAnnouncement(String keyword);
+    Page<Announcement> findPaginated(int pageNo, int pageSize,String sortField, String sortDir);
     
     
 }

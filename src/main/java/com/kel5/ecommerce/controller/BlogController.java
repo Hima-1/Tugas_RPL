@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -30,12 +31,14 @@ import org.springframework.web.servlet.view.RedirectView;
  * @author HP
  */
 @Controller
+@SessionAttributes("name")
+@RequestMapping("/user/")
 public class BlogController {
     
     @Autowired
     private BlogService blogService;
     
-    @GetMapping("/")
+    @GetMapping("/artikel")
     public String viewHomePage(Model model){
         return findPaginated(1, "id", "asc", model);
     }
@@ -45,14 +48,14 @@ public class BlogController {
         List<Blog> listBlog = blogService.getAllBlog(keyword);
         model.addAttribute("listBlog", listBlog);
         model.addAttribute("keyword", keyword);
-        return "blogs";
+        return "admin/artikel";
     }
     
     @GetMapping("/showNewBlogForm")
     public String Project2(Model model){
         Blog blog = new Blog();
         model.addAttribute("blog", blog);
-        return "blog_Add";
+        return "admin/addBlogsForm";
     }
 
     @PostMapping("/saveBlog")
@@ -64,7 +67,7 @@ public class BlogController {
         Blog saveBlog = blogService.saveBlog(blog);
         String uploadDir = "blog-photos/" + saveBlog.getId();
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        return new RedirectView("/", true);
+        return new RedirectView("/user/artikel", true);
     }
         
      @GetMapping ("/showFormForUpdate/{id}")
@@ -72,13 +75,13 @@ public class BlogController {
          
          Blog blog = blogService.getBlogById(id);
          model.addAttribute("blog", blog);
-         return "blog_edit";        
+         return "admin/updateBlogsForm";        
     }
      
      @GetMapping("/deleteBlog/{id}")
      public String deleteBlog(@PathVariable(value ="id") long id){
          this.blogService.deleteBlogById(id);
-         return"redirect:/";
+         return"redirect:/user/artikel";
     }
      
      @GetMapping("/page/{pageNo}")
@@ -101,6 +104,6 @@ public class BlogController {
          
          
          model.addAttribute("listBlog", listBlog);
-         return "blogs";
+         return "admin/artikel";
 }
 }

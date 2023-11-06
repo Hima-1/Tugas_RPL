@@ -1,9 +1,12 @@
 package com.kel5.ecommerce.controller;
 
+import com.kel5.ecommerce.entity.Blog;
 import com.kel5.ecommerce.entity.Image;
 import com.kel5.ecommerce.entity.User;
+import com.kel5.ecommerce.service.BlogService;
 import com.kel5.ecommerce.service.ImageService;
 import com.kel5.ecommerce.service.UserService;
+import com.kel5.ecommerce.util.FileUploadUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,7 +24,11 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @SessionAttributes("name")
@@ -88,10 +95,10 @@ public class UserController {
         return new ModelAndView("admin/pesanan");
     }
 
-    @GetMapping("/artikel")
-    public ModelAndView Artikel(Model model) {
-        return new ModelAndView("admin/artikel");
-    }
+//    @GetMapping("/artikel")
+//    public ModelAndView Artikel(Model model) {
+//        return new ModelAndView("admin/artikel");
+//    }
     
     @GetMapping("/pelanggan")
     public ModelAndView Pelanggan(Model model) {
@@ -112,4 +119,5 @@ public class UserController {
     public ModelAndView ViewProfile(Model model) {
         return new ModelAndView("admin/users-profile");
     }
+    
 }
