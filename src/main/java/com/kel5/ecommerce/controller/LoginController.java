@@ -116,4 +116,6 @@ public class LoginController {
         else
             return "redirect:/forgot_password?fail";
     }
+    
+
 }

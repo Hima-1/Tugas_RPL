@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.ui.Model;
 
 @Controller
 @SessionAttributes("name")
@@ -46,7 +47,7 @@ public class UserController {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public ModelAndView home(){
         ModelAndView mv = new ModelAndView("image/index");
         List<Image> imageList = imageService.viewAll();
@@ -69,5 +70,46 @@ public class UserController {
         image.setImage(blob);
         imageService.create(image);
         return "redirect:/user/";
+    }
+    
+    @GetMapping("/")
+    public ModelAndView DashboardAdmin(Model model) {
+        ModelAndView mv = new ModelAndView("admin/index");
+        return mv;
+    }
+    
+    @GetMapping("/produk")
+    public ModelAndView Produk(Model model) {
+        return new ModelAndView("admin/produk");
+    }
+
+    @GetMapping("/pesanan")
+    public ModelAndView Pesanan(Model model) {
+        return new ModelAndView("admin/pesanan");
+    }
+
+    @GetMapping("/artikel")
+    public ModelAndView Artikel(Model model) {
+        return new ModelAndView("admin/artikel");
+    }
+    
+    @GetMapping("/pelanggan")
+    public ModelAndView Pelanggan(Model model) {
+        return new ModelAndView("admin/pelanggan");
+    }
+    
+    @GetMapping("/pesanan/detail")
+    public ModelAndView DetailPesanan(Model model) {
+        return new ModelAndView("admin/rician_pesanan");
+    }
+    
+    @GetMapping("/produk/detail")
+    public ModelAndView DetailProduk(Model model) {
+        return new ModelAndView("admin/rician_produk");
+    }
+    
+    @GetMapping("/profil")
+    public ModelAndView ViewProfile(Model model) {
+        return new ModelAndView("admin/users-profile");
     }
 }
