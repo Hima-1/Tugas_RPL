@@ -45,6 +45,7 @@ public class SpringSecurityConfig{
                         .requestMatchers("/confirm-account").permitAll()
                         .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/fontawesome/**").permitAll()   
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/login/**").permitAll()

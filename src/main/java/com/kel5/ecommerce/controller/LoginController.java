@@ -75,7 +75,7 @@ public class LoginController {
         User existingUser = confirmationTokenRepository.findByConfirmationToken(confirmationToken).getUser();
         model.addAttribute("confirmationToken", confirmationToken);
         if (existingUser != null) {
-            return "autentifikasi/lupapassword";
+            return "autentifikasi/resetpassword";
         }
         else
             return "redirect:/forgot_password?invalid";
@@ -96,7 +96,7 @@ public class LoginController {
                 return "redirect:/login?changed";
             } else {
                 model.addAttribute("error", "Password and retype password do not match.");
-                return "autentifikasi/lupapassword";
+                return "autentifikasi/resetpassword";
             }
         } else {
             return "redirect:/forgot_password?invalid";
@@ -112,10 +112,8 @@ public class LoginController {
     public String processEmail(@RequestParam("email") String email) {
         boolean result = userService.forgotPassword(email);
         if (result)
-            return "autentifikasi/pages-check_email";
+            return "autentifikasi/checkemail";
         else
             return "redirect:/forgot_password?fail";
     }
-    
-
 }

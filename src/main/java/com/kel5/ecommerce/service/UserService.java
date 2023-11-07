@@ -22,5 +22,7 @@ public interface UserService {
     public List<UserDto> getUsers();
     public List<UserDto> getUsersUser();
 
+    User getUserLogged();
+
     void confirmEmail(String confirmationToken);
 }

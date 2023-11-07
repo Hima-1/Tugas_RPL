@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("name")
-@RequestMapping("/user/")
+@RequestMapping("/admin/")
 public class AnnouncementController {
     
     @Autowired
@@ -58,7 +58,7 @@ public class AnnouncementController {
             model.addAttribute("error", "Error saving announcement: " + e.getMessage());
         }
 
-        return "redirect:/user/announcements"; // Redirect ke halaman daftar pengumuman
+        return "redirect:/admin/announcements"; // Redirect ke halaman daftar pengumuman
     }
 
     @GetMapping("/showAnnouncementFormForUpdate/{id}")
@@ -71,7 +71,7 @@ public class AnnouncementController {
     @GetMapping("/deleteAnnouncement/{id}") 
     public String deleteAnnouncement(@PathVariable("id") long id) {
         announcementService.deleteAnnouncementById(id);
-        return "redirect:/user/announcements";
+        return "redirect:/admin/announcements";
     }
     
     @GetMapping("announcement/page/{pageNo}")

@@ -44,80 +44,64 @@ public class UserController {
                 SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
-
-    @GetMapping("/display")
-    public ResponseEntity<byte[]> displayImage(@RequestParam("id") long id) throws IOException, SQLException
-    {
-        Image image = imageService.viewById(id);
-        byte [] imageBytes = null;
-        imageBytes = image.getImage().getBytes(1,(int) image.getImage().length());
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
-    }
-
-    @GetMapping("/home")
-    public ModelAndView home(){
-        ModelAndView mv = new ModelAndView("image/index");
-        List<Image> imageList = imageService.viewAll();
-        mv.addObject("imageList", imageList);
-        return mv;
-    }
-
-    @GetMapping("/add")
-    public ModelAndView addImage(){
-        return new ModelAndView("image/addimage");
-    }
-
-    @PostMapping("/add")
-    public String addImagePost(HttpServletRequest request, @RequestParam("image") MultipartFile file) throws IOException, SerialException, SQLException
-    {
-        byte[] bytes = file.getBytes();
-        Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
-
-        Image image = new Image();
-        image.setImage(blob);
-        imageService.create(image);
-        return "redirect:/user/";
-    }
     
     @GetMapping("/")
-    public ModelAndView DashboardAdmin(Model model) {
-        ModelAndView mv = new ModelAndView("admin/index");
-        return mv;
-    }
+    public String userHome(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/index";
+    } 
     
-    @GetMapping("/produk")
-    public ModelAndView Produk(Model model) {
-        return new ModelAndView("admin/produk");
-    }
-
-    @GetMapping("/pesanan")
-    public ModelAndView Pesanan(Model model) {
-        return new ModelAndView("admin/pesanan");
-    }
-
-//    @GetMapping("/artikel")
-//    public ModelAndView Artikel(Model model) {
-//        return new ModelAndView("admin/artikel");
-//    }
+    @GetMapping("/shop")
+    public String shop(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/shop";
+    }    
     
-    @GetMapping("/pelanggan")
-    public ModelAndView Pelanggan(Model model) {
-        return new ModelAndView("admin/pelanggan");
-    }
+    @GetMapping("/shop-detail")
+    public String shopDetail(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/shop-detail";
+    }    
     
-    @GetMapping("/pesanan/detail")
-    public ModelAndView DetailPesanan(Model model) {
-        return new ModelAndView("admin/rician_pesanan");
-    }
+    @GetMapping("/about")
+    public String about(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/about";
+    }    
     
-    @GetMapping("/produk/detail")
-    public ModelAndView DetailProduk(Model model) {
-        return new ModelAndView("admin/rician_produk");
-    }
+    @GetMapping("/cart")
+    public String cart(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/cart";
+    }    
     
-    @GetMapping("/profil")
-    public ModelAndView ViewProfile(Model model) {
-        return new ModelAndView("admin/users-profile");
-    }
+    @GetMapping("/checkout")
+    public String checkout(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/checkout";
+    }    
     
+    @GetMapping("/contact-us")
+    public String contactUs(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/contact-us";
+    }    
+    
+    @GetMapping("/my-account")
+    public String myAccount(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/my-account";
+    }    
+    
+    @GetMapping("/service")
+    public String service(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/service";
+    }    
+    
+    @GetMapping("/wishlist")
+    public String wishlist(ModelMap model){
+        String username = getLogedinUsername();
+        return "user/wishlist";
+    }
 }

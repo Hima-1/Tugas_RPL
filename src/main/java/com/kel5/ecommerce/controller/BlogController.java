@@ -32,7 +32,7 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 @Controller
 @SessionAttributes("name")
-@RequestMapping("/user/")
+@RequestMapping("/admin/")
 public class BlogController {
     
     @Autowired
@@ -67,7 +67,7 @@ public class BlogController {
         Blog saveBlog = blogService.saveBlog(blog);
         String uploadDir = "blog-photos/" + saveBlog.getId();
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        return new RedirectView("/user/artikel", true);
+        return new RedirectView("/admin/artikel", true);
     }
         
      @GetMapping ("/showFormForUpdate/{id}")
@@ -81,7 +81,7 @@ public class BlogController {
      @GetMapping("/deleteBlog/{id}")
      public String deleteBlog(@PathVariable(value ="id") long id){
          this.blogService.deleteBlogById(id);
-         return"redirect:/user/artikel";
+         return"redirect:/admin/artikel";
     }
      
      @GetMapping("/page/{pageNo}")

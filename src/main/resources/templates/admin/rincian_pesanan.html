@@ -212,7 +212,7 @@
            </li>
 
            <li>
-             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+             <a class="dropdown-item d-flex align-items-center" href="admins-profile.html">
                <i class="bi bi-person"></i>
                <span>My Profile</span>
              </a>
@@ -222,12 +222,11 @@
            </li>
 
            <li>
-             <a class="dropdown-item d-flex align-items-center" href="#">
-               <i class="bi bi-box-arrow-right"></i>
-               <span>Sign Out</span>
-             </a>
-           </li>
-
+            <a class="dropdown-item d-flex align-items-center" th:href="@{/logout}">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Sign Out</span>
+            </a>
+          </li>
          </ul><!-- End Profile Dropdown Items -->
        </li><!-- End Profile Nav -->
 
@@ -277,7 +276,7 @@
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="admins-profile.html">
           <a th:href="@{/profil}"><i class="bi bi-person"></i>
           <span>Profil</span></a>
         </a>
@@ -294,9 +293,9 @@
       <h1>Daftar Pesanan</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Pesanan</li>
-          <li class="breadcrumb-item active">Daftar</li>
+          <li class="breadcrumb-item"><a th:href="@{/admin/}">Home</a></li>
+          <li class="breadcrumb-item"><a th:href="@{/admin/pesanan}">Pesanan</a></li>
+          <li class="breadcrumb-item active">Detail</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

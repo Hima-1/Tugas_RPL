@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes("name")
@@ -23,30 +24,41 @@ public class AdminController {
                 SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
-
+//
+//    @GetMapping("/")
+//    public String registrationForm(ModelMap model) {
+//        String username = getLogedinUsername();
+//        return "admin";
+//    }
+    
     @GetMapping("/")
-    public String registrationForm(ModelMap model) {
-        String username = getLogedinUsername();
-        return "admin";
-    }
-    
-    @GetMapping("/dashboard")
-    public String DashboardAdmin(Model model) {
-        return "admin/dashboard";
-    }
-    
-    @GetMapping("/produk")
-    public String Produk(Model model) {
-        return "admin/produk";
+    public ModelAndView DashboardAdmin(Model model) {
+        ModelAndView mv = new ModelAndView("admin/index");
+        return mv;
     }
 
     @GetMapping("/pesanan")
-    public String Pesanan(Model model) {
-        return "admin/pesanan";
+    public ModelAndView Pesanan(Model model) {
+        return new ModelAndView("admin/pesanan");
     }
 
-    @GetMapping("/artikel")
-    public String Artikel(Model model) {
-        return "admin/artikel";
+    @GetMapping("/pelanggan")
+    public ModelAndView Pelanggan(Model model) {
+        return new ModelAndView("admin/pelanggan");
+    }
+    
+    @GetMapping("/pesanan/detail")
+    public ModelAndView DetailPesanan(Model model) {
+        return new ModelAndView("admin/rician_pesanan");
+    }
+    
+    @GetMapping("/produk/detail")
+    public ModelAndView DetailProduk(Model model) {
+        return new ModelAndView("admin/rician_produk");
+    }
+    
+    @GetMapping("/profil")
+    public ModelAndView ViewProfile(Model model) {
+        return new ModelAndView("admin/admins-profile");
     }
 }

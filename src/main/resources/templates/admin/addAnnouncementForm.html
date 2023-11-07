@@ -49,7 +49,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center bg-black">
     <div class="d-flex align-items-center justify-content-between">
       <i class="bi bi-list toggle-sidebar-btn text-white"></i>
-      <a th:href="@{/user/}" class="logo d-flex align-items-center">
+      <a th:href="@{/admin/}" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block text-white">Jimbung Industrial</span>
       </a>
     </div>
@@ -97,14 +97,14 @@
             </li>
             <li><hr class="dropdown-divider"/></li>
             <li>
-              <a th:href="@{/user/profil}" class="dropdown-item d-flex align-items-center">
+              <a th:href="@{/admin/profil}" class="dropdown-item d-flex align-items-center">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
             </li>
             <li><hr class="dropdown-divider"/></li>
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" th:href="@{/logout}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -123,42 +123,42 @@
 
       <li class="nav-item">
         <a class="nav-link " th:href="@{index.html}">
-          <a th:href="@{/user/}"><i class="bi bi-grid"></i><span>Dashboard</span></a>
+          <a th:href="@{/admin/}"><i class="bi bi-grid"></i><span>Dashboard</span></a>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <a th:href="@{/user/pesanan}"><i class="bi bi-cart"></i><span>Pesanan</span></a>
+          <a th:href="@{/admin/pesanan}"><i class="bi bi-cart"></i><span>Pesanan</span></a>
         </a>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <a th:href="@{/user/produk}"><i class="fa-solid fa-shirt"></i><span>Produk</span></a>
+          <a th:href="@{/admin/produk}"><i class="fa-solid fa-shirt"></i><span>Produk</span></a>
         </a>
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <a th:href="@{/user/pelanggan}"><i class="bi bi-people"></i><span>Pelanggan</span></a>
+          <a th:href="@{/admin/pelanggan}"><i class="bi bi-people"></i><span>Pelanggan</span></a>
         </a>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <a th:href="@{/user/artikel}"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Artikel</span></a>
+          <a th:href="@{/admin/artikel}"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Artikel</span></a>
         </a>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <a th:href="@{/user/cabang}"><i class="bx bxs-buildings"></i><span>Cabang</span></a>
+          <a th:href="@{/admin/cabang}"><i class="bx bxs-buildings"></i><span>Cabang</span></a>
         </a>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse"  href="#">
-          <a th:href="@{/user/profil}"><i class="bi bi-person"></i>
+          <a th:href="@{/admin/profil}"><i class="bi bi-person"></i>
           <span>Profil</span></a>
         </a>
       </li><!-- End Profile Page Nav -->
@@ -174,8 +174,8 @@
     <h1>Tambah Announcement</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Announcement</li>
+        <li class="breadcrumb-item"><a th:href="@{/admin/}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/admin/announcements}">Announcement</a></li>
         <li class="breadcrumb-item active">Tambah</li>
       </ol>
     </nav>
@@ -188,7 +188,7 @@
               <h5 class="card-title">Fill the Information</h5>
 
               <!-- Multi Columns Form -->
-              <form class="row g-3" action="/user/saveAnnouncement" method="post" th:object="${announcement}">
+              <form class="row g-3" action="/admin/saveAnnouncement" method="post" th:object="${announcement}">
                 <div class="col-md-12">
                   <label for="announcementName" class="form-label">Announcement Name</label>
                   <input type="text" th:field="*{title}" class="form-control" id="announcementName" placeholder="Blog Name">
@@ -210,7 +210,7 @@
                   <button type="reset" class="btn btn-secondary">Reset</button>
                 </div>
               </form><!-- End Multi Columns Form -->
-              <a th:href="@{/user/announcements}"> Back to Announcement </a>
+              <a th:href="@{/admin/announcements}"> Back to Announcement </a>
             </div>
           </div>
 

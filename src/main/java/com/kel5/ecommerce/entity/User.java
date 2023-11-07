@@ -1,4 +1,3 @@
-
 package com.kel5.ecommerce.entity;
 
 import jakarta.persistence.*;
