@@ -16,4 +16,6 @@ public interface OrderService {
     List<Order> getOrdersForLoggedInUser();
 
     Order createOrderFromCart();
+
+    void createOrderFromProduct(Long productId, Integer quantity);
 }

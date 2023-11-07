@@ -3,6 +3,7 @@ package com.kel5.ecommerce.controller;
 import com.kel5.ecommerce.dto.ProductDto;
 import com.kel5.ecommerce.entity.Product;
 import com.kel5.ecommerce.entity.User;
+import com.kel5.ecommerce.service.OrderService;
 import com.kel5.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,6 +19,8 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private OrderService orderService;
 
     // To display the form for adding a product
     @GetMapping("/add-product")
@@ -59,9 +62,7 @@ public class ProductController {
     public String buyProduct(@AuthenticationPrincipal User currentUser,
                              @PathVariable("productId") Long productId,
                              @RequestParam("quantity") Integer quantity) {
-        System.out.println("Bought product " + productId + " with quantity " + quantity);
-        // You might need to adjust this method to handle the buying process
-        // cartService.purchaseProduct(productId, quantity, currentUser);
+        orderService.createOrderFromProduct(productId, quantity);
         return "redirect:/products";
     }
 }
