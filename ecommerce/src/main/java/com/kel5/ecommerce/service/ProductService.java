@@ -9,7 +9,13 @@ import java.util.Optional;
 public interface ProductService {
     Product saveProduct(ProductDto productDto) throws Exception;
 
+    Product createProduct(Product product);
+    Product updateProduct(Long id, Product product);
+    void deleteProduct(Long id);
+
     List<Product> getAllProducts();
 
     Optional<Product> getProductById(Long id);
+
+
 }

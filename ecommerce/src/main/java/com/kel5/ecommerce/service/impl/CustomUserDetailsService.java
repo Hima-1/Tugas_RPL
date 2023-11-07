@@ -1,5 +1,5 @@
 
-package com.kel5.ecommerce.service;
+package com.kel5.ecommerce.service.impl;
 
 import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.repository.UserRepository;

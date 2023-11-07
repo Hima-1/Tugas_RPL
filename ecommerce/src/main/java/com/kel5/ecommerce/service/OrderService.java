@@ -1,0 +1,19 @@
+package com.kel5.ecommerce.service;
+
+import com.kel5.ecommerce.entity.Cart;
+import com.kel5.ecommerce.entity.Order;
+import jakarta.transaction.Transactional;
+
+import java.util.List;
+
+public interface OrderService {
+    Order createOrder(Order order);
+    Order updateOrder(Long id, Order order);
+    com.kel5.ecommerce.entity.Order getOrderById(Long id);
+    void deleteOrder(Long id);
+    List<Order> getAllOrders();
+
+    List<Order> getOrdersForLoggedInUser();
+
+    Order createOrderFromCart();
+}

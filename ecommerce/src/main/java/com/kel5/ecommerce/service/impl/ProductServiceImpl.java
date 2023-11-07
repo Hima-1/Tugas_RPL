@@ -3,6 +3,7 @@ package com.kel5.ecommerce.service.impl;
 import com.kel5.ecommerce.dto.ProductDto;
 import com.kel5.ecommerce.entity.Image;
 import com.kel5.ecommerce.entity.Product;
+import com.kel5.ecommerce.exception.ResourceNotFoundException;
 import com.kel5.ecommerce.repository.ProductRepository;
 import com.kel5.ecommerce.service.ProductService;
 import com.kel5.ecommerce.util.ProductMapper;
@@ -23,6 +24,26 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Override
+    public Product createProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Product updateProduct(Long id, Product product) {
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + id));
+        // Update properties of existingProduct with those from product
+        // ...
+        return productRepository.save(existingProduct);
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+        Optional<Product> product = getProductById(id);
+        productRepository.delete(product.get());
+    }
 
     @Override
     public Product saveProduct(ProductDto productDto) throws Exception {
@@ -54,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
+        return productRepository.findAll();
     }
 
     @Override

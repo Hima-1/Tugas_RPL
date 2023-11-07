@@ -2,6 +2,7 @@
 package com.kel5.ecommerce.service.impl;
 
 import com.kel5.ecommerce.dto.UserDto;
+import com.kel5.ecommerce.entity.Cart;
 import com.kel5.ecommerce.entity.ConfirmationToken;
 import com.kel5.ecommerce.entity.Role;
 import com.kel5.ecommerce.entity.User;
@@ -9,15 +10,14 @@ import com.kel5.ecommerce.mapper.UserMapper;
 import com.kel5.ecommerce.repository.ConfirmationTokenRepository;
 import com.kel5.ecommerce.repository.RoleRepository;
 import com.kel5.ecommerce.repository.UserRepository;
-import com.kel5.ecommerce.service.EmailService;
 import com.kel5.ecommerce.service.UserService;
 import com.kel5.ecommerce.util.TbConstants;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -27,19 +27,22 @@ import static com.kel5.ecommerce.mapper.UserMapper.mapToUserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private ConfirmationTokenRepository confirmationTokenRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ConfirmationTokenRepository confirmationTokenRepository;
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
+
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, ConfirmationTokenRepository confirmationTokenRepository, EmailService emailService) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.confirmationTokenRepository = confirmationTokenRepository;
+        this.emailService = emailService;
+    }
 
 
     @Override
@@ -54,7 +57,7 @@ public class UserServiceImpl implements UserService {
                 userDto.getName(),
                 userDto.getEmail(),
                 passwordEncoder.encode(userDto.getPassword()),
-                Arrays.asList(role)
+                List.of(role)
         );
         userRepository.save(user);
 
@@ -63,7 +66,7 @@ public class UserServiceImpl implements UserService {
         confirmationTokenRepository.save(confirmationToken);
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("himaspot@gmail.com");
+        mailMessage.setFrom("jimbungindustrial@gmail.com");
         mailMessage.setTo(user.getEmail());
         mailMessage.setSubject("Complete Registration!");
         mailMessage.setText("To confirm your account, please click here : "
@@ -83,7 +86,7 @@ public class UserServiceImpl implements UserService {
             confirmationTokenRepository.save(confirmationToken);
 
             SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setFrom("himaspot@gmail.com");
+            mailMessage.setFrom("jimbungindustrial@gmail.com");
             mailMessage.setTo(user.getEmail());
             mailMessage.setSubject("Change Password");
             mailMessage.setText("To change your account, please click here : "
@@ -92,6 +95,18 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<UserDto> getUsersUser() {
+        List<User> users = userRepository.findAll()
+                .stream()
+                .filter(user -> user.getRoles().stream()
+                        .anyMatch(role -> role.getName().equals(TbConstants.Roles.USER)))
+                .toList();
+        return users.stream()
+                .map(UserMapper::mapToUserDto)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -107,24 +122,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getUsers() {
         List<User> users = userRepository.findAll();
-        List<UserDto> userDtos = users.stream()
-                .map((user) -> (UserMapper.mapToUserDto(user)))
+        return users.stream()
+                .map(UserMapper::mapToUserDto)
                 .collect(Collectors.toList());
-        return userDtos;
     }
 
     @Override
-    public List<UserDto> getUsersUser() {
-        List<User> users = userRepository.findAll()
-                .stream()
-                .filter(user -> user.getRoles().stream()
-                        .anyMatch(role -> role.getName().equals(TbConstants.Roles.USER)))
-                .collect(Collectors.toList());
-        List<UserDto> userDtos = users.stream()
-                .map((user) -> (UserMapper.mapToUserDto(user)))
-                .collect(Collectors.toList());
-        return userDtos;
+    public User getUserLogged() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return userRepository.findByEmail(currentPrincipalName);
     }
+
 
     @Override
     public void confirmEmail(String confirmationToken) {
@@ -132,8 +141,14 @@ public class UserServiceImpl implements UserService {
             User user = userRepository.findByEmail(token.getUser().getEmail());
             if (user != null) {
                 user.setEnabled(true);
+                user.setCarts(new Cart());
                 userRepository.save(user);
             }
+    }
+
+    @Override
+    public Cart getUserCart() {
+        return null;
     }
 
     @Override

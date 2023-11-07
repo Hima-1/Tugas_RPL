@@ -2,6 +2,9 @@ package com.kel5.ecommerce.mapper;
 
 import com.kel5.ecommerce.dto.UserDto;
 import com.kel5.ecommerce.entity.User;
+import org.springframework.stereotype.Component;
+
+@Component
 
 public class UserMapper {
     public static UserDto mapToUserDto(User user) {

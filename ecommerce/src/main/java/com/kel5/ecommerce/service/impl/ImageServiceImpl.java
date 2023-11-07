@@ -10,8 +10,11 @@ import java.util.List;
 
 @Service
 public class ImageServiceImpl implements ImageService {
-    @Autowired
-    private ImageRepository imageRepository;
+    private final ImageRepository imageRepository;
+
+    public ImageServiceImpl(ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
+    }
 
     @Override
     public Image create(Image image) {

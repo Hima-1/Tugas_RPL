@@ -1,4 +1,4 @@
-package com.kel5.ecommerce.service;
+package com.kel5.ecommerce.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;

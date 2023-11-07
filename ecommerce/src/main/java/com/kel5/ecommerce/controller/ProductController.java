@@ -2,14 +2,13 @@ package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.dto.ProductDto;
 import com.kel5.ecommerce.entity.Product;
+import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,5 +53,15 @@ public class ProductController {
             model.addAttribute("error", "Product not found");
             return "product/Product";
         }
+    }
+
+    @PostMapping("/products/buy/{productId}")
+    public String buyProduct(@AuthenticationPrincipal User currentUser,
+                             @PathVariable("productId") Long productId,
+                             @RequestParam("quantity") Integer quantity) {
+        System.out.println("Bought product " + productId + " with quantity " + quantity);
+        // You might need to adjust this method to handle the buying process
+        // cartService.purchaseProduct(productId, quantity, currentUser);
+        return "redirect:/products";
     }
 }
