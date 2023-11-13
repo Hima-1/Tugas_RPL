@@ -1,8 +1,13 @@
 package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.entity.Blog;
+import com.kel5.ecommerce.entity.Category;
 import com.kel5.ecommerce.entity.Image;
+import com.kel5.ecommerce.entity.Subcategory;
 import com.kel5.ecommerce.entity.User;
+import com.kel5.ecommerce.repository.BlogRepository;
+import com.kel5.ecommerce.repository.CategoryRepository;
+import com.kel5.ecommerce.repository.SubcategoryRepository;
 import com.kel5.ecommerce.service.BlogService;
 import com.kel5.ecommerce.service.ImageService;
 import com.kel5.ecommerce.service.UserService;
@@ -38,6 +43,15 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ImageService imageService;
+    
+    @Autowired
+    private CategoryRepository categoryRepository;
+    
+    @Autowired
+    private SubcategoryRepository subcategoryRepository;
+    
+    @Autowired
+    private BlogRepository blogRepository;
 
     private String getLogedinUsername() {
         Authentication authentication =
@@ -48,14 +62,29 @@ public class UserController {
     @GetMapping("/")
     public String userHome(ModelMap model){
         String username = getLogedinUsername();
+        List<Category> categories = categoryRepository.findAll();
+        List<Subcategory> subcategories = subcategoryRepository.findAll();
+        List<Blog> blogs = blogRepository.findAll();
+        model.addAttribute("categories", categories);
+        model.addAttribute("subcategories", subcategories);
+        model.addAttribute("blogs", blogs);
         return "user/index";
     } 
     
     @GetMapping("/shop")
     public String shop(ModelMap model){
         String username = getLogedinUsername();
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
         return "user/shop";
     }    
+    
+    @GetMapping("/shop/{subcategoryId}")
+    public String viewSubcategory(@PathVariable Long subcategoryId, Model model) {
+        Subcategory subcategory = subcategoryRepository.findById(subcategoryId).orElse(null);
+        model.addAttribute("subcategory", subcategory);
+        return "subcategory";
+    }
     
     @GetMapping("/shop-detail")
     public String shopDetail(ModelMap model){

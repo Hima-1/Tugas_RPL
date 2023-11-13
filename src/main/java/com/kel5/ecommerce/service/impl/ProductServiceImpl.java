@@ -2,11 +2,14 @@ package com.kel5.ecommerce.service.impl;
 
 import com.kel5.ecommerce.dto.ProductDto;
 import com.kel5.ecommerce.entity.Blog;
+import com.kel5.ecommerce.entity.Category;
 import com.kel5.ecommerce.entity.Image;
 import com.kel5.ecommerce.entity.Product;
+import com.kel5.ecommerce.entity.Subcategory;
 import com.kel5.ecommerce.exception.ResourceNotFoundException;
 import com.kel5.ecommerce.mapper.ProductMapper;
 import com.kel5.ecommerce.repository.ProductRepository;
+import com.kel5.ecommerce.service.CategoryService;
 import com.kel5.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private CategoryService categoryService;
+
 
     @Override
     public Product createProduct(Product product) {
@@ -66,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product saveProduct(ProductDto productDto) throws Exception {
+    public Product saveProduct(ProductDto productDto, Long categoryId, Long subcategoryId) throws Exception {
         Product product = ProductMapper.toEntity(productDto);
         List<Image> images = new ArrayList<>();
 
@@ -89,6 +96,11 @@ public class ProductServiceImpl implements ProductService {
         }
 
         product.setImage(images);
+        Category category = categoryService.getCategoryById(categoryId);
+        Subcategory subcategory = categoryService.getSubcategoryById(subcategoryId);
+
+        product.setCategory(category);
+        product.setSubcategory(subcategory);
         return productRepository.save(product);
     }
 

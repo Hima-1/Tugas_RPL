@@ -4,10 +4,14 @@
  */
 package com.kel5.ecommerce.entity;
 
+/**
+ *
+ * @author asus
+ */
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,29 +20,15 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "product")
-public class Product {
-
+@Table(name = "subcategory")
+public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
-    private float price;
-    private int stock;
-    private float weight;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "product_id")
-    private List<Image> image = new ArrayList<>();
-
-    private String status;
+    private boolean status =true;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "subcategory_id")
-    private Subcategory subcategory;
 }

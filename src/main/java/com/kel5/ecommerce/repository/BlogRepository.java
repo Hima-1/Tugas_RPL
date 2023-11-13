@@ -20,9 +20,6 @@ import org.springframework.stereotype.Repository;
 public interface BlogRepository extends JpaRepository <Blog, Long> {
     @Query("SELECT blog FROM Blog blog WHERE CONCAT(blog.id, ' ', blog.name, ' ', blog.deskripsi) LIKE %?1%")
     List<Blog> search(@Param("keyword") String keyword);
-
-//    @Query("SELECT blog FROM Blog blog WHERE CONCAT(blog.id, ' ' , blog.name, ' ' , blog.deskripsi LIKE %?1%")
-//    public List<Blog> search(String keyword);
       public Blog findByname(String name);
     
 }

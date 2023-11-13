@@ -202,13 +202,31 @@
                   <input type="number" name="price" class="form-control" id="productPrice" placeholder="Product Price" required>
                 </div>
                 <div class="col-md-12">
-                  <label for="productStock" class="form-label">Product Price</label>
+                  <label for="productStock" class="form-label">Product Stock</label>
                   <input type="number" name="stock" class="form-control" id="productStock" placeholder="Product Stock" required>
                 </div>
                 <div class="col-md-12">
                   <label for="productWeight" class="form-label">Product Weight</label>
                   <input type="number" name="weight" class="form-control" id="productWeight" placeholder="Product Weight" required>
                 </div>
+                  <div class="col-md-6">
+                      <label for="category" class="form-label">Category</label>
+                      <select name="category" class="form-control" id="category" required>
+                          <option value="" selected>Select Category</option>
+                      </select>
+                      <br>
+                      <a class="btn btn-primary" th:href="@{/admin/add-category}"> Add Category </a>
+                  </div>
+                  <div class="col-md-6">
+                      <label for="subcategory" class="form-label">Subcategory</label>
+                      <select name="subcategory" class="form-control" id="subcategory" required>
+                          <option value="" selected>Select Subcategory</option>
+                      </select>
+                      <br>
+                      <a class="btn btn-primary" th:href="@{/admin/add-subcategory}"> Add Subcategory </a>
+                  </div>
+                  
+
                 <div class="col-md-6">
                   <label for="images" class="form-label">Product Photos (Max 3)</label>
                   <input type="file" name="images" accept="image/png, image/jpeg" class="form-control" id="images" multiple required>
@@ -256,6 +274,46 @@
 
   <!-- Template Main JS File -->
   <script th:src="@{/assets/js/main.js}"></script>
+  <script>
+    $(document).ready(function () {
+        // Ambil data kategori saat halaman dimuat
+        $.ajax({
+            url: 'http://localhost:8080/admin/categories', // Ganti dengan URL yang sesuai
+            method: 'GET',
+            success: function (data) {
+                // Isi dropdown kategori dengan data yang diterima dari server
+                var categoryDropdown = $('#category');
+                categoryDropdown.empty();
+                categoryDropdown.append($('<option>').text('Select Category').attr('value', ''));
+                data.forEach(function (category) {
+                    categoryDropdown.append($('<option>').text(category.name).attr('value', category.id));
+                });
+
+                // Tambahkan event listener untuk dropdown kategori
+                categoryDropdown.on('change', function () {
+                    var selectedCategoryId = $(this).val();
+                    var subcategoryDropdown = $('#subcategory');
+                    subcategoryDropdown.empty();
+                    subcategoryDropdown.append($('<option>').text('Select Subcategory').attr('value', ''));
+
+                    // Ambil data subkategori sesuai dengan kategori yang dipilih
+                    if (selectedCategoryId) {
+                        $.ajax({
+                            url: 'http://localhost:8080/admin/subcategories/' + selectedCategoryId, // Ganti dengan URL yang sesuai
+                            method: 'GET',
+                            success: function (data) {
+                                data.forEach(function (subcategory) {
+                                    subcategoryDropdown.append($('<option>').text(subcategory.name).attr('value', subcategory.id));
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+  </script>
+
 
 </body>
 

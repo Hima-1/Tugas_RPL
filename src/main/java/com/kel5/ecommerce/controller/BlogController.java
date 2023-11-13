@@ -72,7 +72,6 @@ public class BlogController {
         
      @GetMapping ("/showFormForUpdate/{id}")
      public String UpdateImage(@PathVariable(value="id") long id, Model model){
-         
          Blog blog = blogService.getBlogById(id);
          model.addAttribute("blog", blog);
          return "admin/updateBlogsForm";        

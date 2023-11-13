@@ -18,6 +18,10 @@ public class WebConfig implements WebMvcConfigurer{
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         exposeDirectory("blog-photos", registry);
+        String baseDir = System.getProperty("user.dir");
+        registry.addResourceHandler("/productsImages/**")
+                .addResourceLocations("file:" + baseDir + "/productsImages/")
+                .setCachePeriod(0);
     }
     
     private void exposeDirectory(String dirName, ResourceHandlerRegistry registry){

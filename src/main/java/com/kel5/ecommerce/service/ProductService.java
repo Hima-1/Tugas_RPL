@@ -8,7 +8,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 
 public interface ProductService {
-    Product saveProduct(ProductDto productDto) throws Exception;
+    Product saveProduct(ProductDto productDto, Long categoryId, Long subcategoryId) throws Exception;
 
     Product createProduct(Product product);
     Product updateProduct(Long id, Product product);

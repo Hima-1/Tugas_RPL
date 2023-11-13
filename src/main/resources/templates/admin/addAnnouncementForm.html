@@ -191,11 +191,11 @@
               <form class="row g-3" action="/admin/saveAnnouncement" method="post" th:object="${announcement}">
                 <div class="col-md-12">
                   <label for="announcementName" class="form-label">Announcement Name</label>
-                  <input type="text" th:field="*{title}" class="form-control" id="announcementName" placeholder="Blog Name">
+                  <input type="text" th:field="*{title}" class="form-control" id="announcementName" placeholder="Category Name">
                 </div>
                 <div class="col-md-12">
                   <label for="announcementDesc" class="form-label">Announcement Description</label>
-                  <input type="text" th:field="*{content}" class="form-control" id="announcementDesc" placeholder="Blog Description">
+                  <input type="text" th:field="*{content}" class="form-control" id="announcementDesc" placeholder="Category Description">
                 </div>
                 <div class="col-12">
                   <div class="form-check">

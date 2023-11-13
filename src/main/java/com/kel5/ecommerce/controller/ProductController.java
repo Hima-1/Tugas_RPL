@@ -1,9 +1,13 @@
 package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.dto.ProductDto;
+import com.kel5.ecommerce.entity.Category;
 import com.kel5.ecommerce.entity.Product;
+import com.kel5.ecommerce.entity.Subcategory;
 import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.exception.ResourceNotFoundException;
+import com.kel5.ecommerce.repository.CategoryRepository;
+import com.kel5.ecommerce.service.CategoryService;
 import com.kel5.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,6 +28,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CategoryService categoryService;
+    
     @GetMapping("/produk")
     public String viewHomePage(Model model) {
         return findPaginated(1, "id", "asc", model);
@@ -46,10 +53,14 @@ public class ProductController {
 
     // To handle the form submission
     @PostMapping("/create-product")
-    public String createProduct(@ModelAttribute ProductDto productDto, Model model) throws Exception {
-        Product savedProduct = productService.saveProduct(productDto);
+    public String createProduct(@ModelAttribute ProductDto productDto, 
+                                @RequestParam("category") Long categoryId, 
+                                @RequestParam("subcategory") Long subcategoryId, 
+                                Model model) throws Exception {
+
+        Product savedProduct = productService.saveProduct(productDto, categoryId, subcategoryId);
         model.addAttribute("message", "Product saved successfully");
-        return "redirect:/user/produk";
+        return "redirect:/admin/produk";
     }
 
     @GetMapping("/products/view/{id}")
