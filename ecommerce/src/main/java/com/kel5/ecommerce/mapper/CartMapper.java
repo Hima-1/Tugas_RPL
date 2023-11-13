@@ -1,8 +1,7 @@
 package com.kel5.ecommerce.mapper;
 
+
 import com.kel5.ecommerce.dto.CartDto;
-import com.kel5.ecommerce.dto.CartDto;
-import com.kel5.ecommerce.dto.CartItemDto;
 import com.kel5.ecommerce.dto.CartItemDto;
 import com.kel5.ecommerce.entity.Cart;
 import com.kel5.ecommerce.entity.CartItem;
@@ -38,4 +37,3 @@ public class CartMapper {
         );
     }
 }
-

@@ -1,4 +1,3 @@
-
 package com.kel5.ecommerce.entity;
 
 import jakarta.persistence.*;
@@ -36,18 +35,6 @@ public class User {
     @Column(nullable = false)
     private boolean isEnabled = false;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Announcement> announcements = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Article> articles = new ArrayList<>();
-
-    @OneToOne(mappedBy = "user")
-    private Cart carts;
-
     @Column(nullable = false)
     @CreationTimestamp
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -75,5 +62,11 @@ public class User {
         } else {
             this.roles = new ArrayList<>();
         }
-    }   
+    } 
+    
+    @OneToOne(mappedBy = "user")
+    private Cart carts;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
 }

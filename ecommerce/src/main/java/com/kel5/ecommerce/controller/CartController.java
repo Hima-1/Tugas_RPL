@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/user/")
 public class CartController {
     @Autowired
     CartService cartService;
@@ -35,19 +38,25 @@ public class CartController {
                             @RequestParam("quantity") Integer quantity) {
         System.out.println("Added product " + productId + " with quantity " + quantity + " to cart.");
         cartService.addProductToCart(productId, quantity, currentUser);
-        return "redirect:/products";
+        return "redirect:/user/shop-detail";
     }
 
     @GetMapping("/cart")
     public String viewCart(Model model) {
         Cart cart = cartService.getCurrentCart(); // Assumes a method to get current cart
         model.addAttribute("cart", CartMapper.toDto(cart));
-        return "cart/view-cart"; // Name of the template that displays the cart
+        return "user/cart"; // Name of the template that displays the cart
     }
 
     @PostMapping("/cart/checkout")
     public String checkoutCart(Model model) {
         orderService.createOrderFromCart(); // Assumes a method to perform checkout
-        return "cart/view-cart"; // Name of the template that confirms successful checkout
+        return "user/cart"; // Name of the template that confirms successful checkout
+    }
+    
+    @GetMapping("/cart/{cartId}/delete") 
+    public String deleteCartItem(@PathVariable(name = "cartId") Long cartId){
+        cartService.deleteCart(cartId);
+        return "redirect:/cart";
     }
 }

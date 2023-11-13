@@ -39,19 +39,27 @@ public class SpringSecurityConfig{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                     .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/about").permitAll()
+                        .requestMatchers("/shop").permitAll()
+                        .requestMatchers("/shop-detail").permitAll()
+                        .requestMatchers("/contact-us").permitAll()
+                        .requestMatchers("/service").permitAll() 
+                        .requestMatchers("/productsImages").permitAll()  
                         .requestMatchers("/registration/**").permitAll()
                         .requestMatchers("/change-password").permitAll()
                         .requestMatchers("/forgot_password").permitAll()
                         .requestMatchers("/confirm-account").permitAll()
                         .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/fontawesome/**").permitAll()   
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .requestMatchers("/static/**").permitAll()
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
@@ -64,7 +72,6 @@ public class SpringSecurityConfig{
                 .exceptionHandling().accessDeniedPage("/access-denied");
         return http.build();
     }
-
 
     @Bean
     public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {

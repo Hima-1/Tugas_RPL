@@ -26,6 +26,6 @@ public interface UserService {
     User getUserLogged();
 
     void confirmEmail(String confirmationToken);
-
-    Cart getUserCart();
+    
+    public Cart getUserCart();
 }

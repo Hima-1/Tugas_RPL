@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/user/")
 public class OrderController {
 
     @Autowired
@@ -22,3 +24,4 @@ public class OrderController {
         return "order/orderList";
     }
 }
+

@@ -1,22 +1,21 @@
 package com.kel5.ecommerce.service.impl;
 
-import com.kel5.ecommerce.entity.Cart;
-import com.kel5.ecommerce.entity.OrderItem;
-import com.kel5.ecommerce.entity.User;
+import com.kel5.ecommerce.entity.*;
 import com.kel5.ecommerce.exception.ResourceNotFoundException;
 import com.kel5.ecommerce.repository.CartRepository;
 import com.kel5.ecommerce.repository.OrderRepository;
+import com.kel5.ecommerce.repository.ProductRepository;
 import com.kel5.ecommerce.service.OrderService;
 import com.kel5.ecommerce.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.kel5.ecommerce.entity.Order;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -26,6 +25,8 @@ public class OrderServiceImpl implements OrderService {
     final
     UserService userService;
     final CartRepository cartRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository, UserService userService, CartRepository cartRep) {
@@ -106,5 +107,30 @@ public class OrderServiceImpl implements OrderService {
 
         // After saving the order, you may want to clear or delete the cart
         // cartService.clearCart(cart);
+    }
+
+    @Override
+    public void createOrderFromProduct(Long productId, Integer quantity) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isEmpty())
+            return;
+
+        Product product = optionalProduct.get();
+        User user = userService.getUserLogged();
+
+        Order order = Order.builder()
+                .status("Belum Dibayar") // Example status, this could be an enum or string depending on your design
+                .orderDate(LocalDate.now())
+                .totalAmount(product.getPrice()*quantity)
+                .user(user) // Assuming the user is the same as the one associated with the cart
+                .orderItems(new ArrayList<>())
+                .build();
+        OrderItem orderItem = new OrderItem();
+        orderItem.setProduct(product);
+        orderItem.setQuantity(quantity);
+        orderItem.setOrder(order);
+        order.getOrderItems().add(orderItem);
+
+        orderRepository.save(order);
     }
 }

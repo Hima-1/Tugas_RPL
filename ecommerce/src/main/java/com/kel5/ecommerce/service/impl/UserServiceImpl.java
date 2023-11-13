@@ -141,14 +141,8 @@ public class UserServiceImpl implements UserService {
             User user = userRepository.findByEmail(token.getUser().getEmail());
             if (user != null) {
                 user.setEnabled(true);
-                user.setCarts(new Cart());
                 userRepository.save(user);
             }
-    }
-
-    @Override
-    public Cart getUserCart() {
-        return null;
     }
 
     @Override
@@ -163,5 +157,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByName(String name) {
         return userRepository.findByName(name);
+    }
+    
+    @Override
+    public Cart getUserCart() {
+        return null;
     }
 }

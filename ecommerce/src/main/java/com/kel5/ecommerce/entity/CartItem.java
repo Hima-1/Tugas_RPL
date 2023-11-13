@@ -25,4 +25,3 @@ public class CartItem {
     @JoinColumn(name = "cartId")
     private Cart cart;
 }
-

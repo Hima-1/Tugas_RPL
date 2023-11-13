@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.kel5.ecommerce.entity;
 
 import jakarta.persistence.*;
@@ -30,18 +34,11 @@ public class Product {
 
     private String status;
 
-    @OneToMany(mappedBy = "product")
-    private List<OrderItem> orderItems;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @OneToMany(mappedBy = "product")
-    private List<CartItem> cartItems;
-
-    @ManyToMany
-    @JoinTable(
-            name = "product_category",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    private Subcategory subcategory;
 }
-

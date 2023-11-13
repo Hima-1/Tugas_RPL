@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>Jimbung Industrial - Ecommerce Bootstrap 4 HTML Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link th:href="@{/assets/img/jimbung.png}" rel="icon">
+    <link th:href="@{/assets/img/apple-touch-icon_1.png}" rel="apple-touch-icon">
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Site CSS -->
+    <link href="/assets/css/style_1.css" rel="stylesheet">
+    <!-- Responsive CSS -->
+    <link th:href="@{/assets/css/responsive.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link th:href="@{/assets/css/custom.css}" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i> Diskon besar besaran
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Pantau selalu website kami
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Selamat Berbelanja
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Banyak rekomendasi desain menarik
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Harga terjangkau
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Kualitas terpercaya
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Banyak barang berkualitas
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Belanja sekarang
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <!-- <div class="custom-select-box">
+                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+						<option>¥ JPY</option>
+						<option>$ USD</option>
+						<option>€ EUR</option>
+					</select>
+                    </div> -->
+                    <div class="right-phone-box">
+                        <p>Kontak Kami <a href="#"> 082226103365</a></p>
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                            <li><a th:href="@{/my-account}">My Account</a></li>
+                            <li><a href="#">Our location</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav" style="height: 80px;">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" th:href="@{/}"><img th:src="@{/assets/img/logo_1.png}" class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/about}">About Us</a></li>
+                        <li class="dropdown megamenu-fw">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
+                            <ul class="dropdown-menu megamenu-content" role="menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-menu col-md-4">
+                                            <h6 class="title">Pakaian</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a th:href="@{/shop}">Wearpack</a></li>
+                                                    <li><a th:href="@{/shop}">Jas Almamater</a></li>
+                                                    <li><a th:href="@{/shop}">Jaket</a></li>
+                                                    <li><a th:href="@{/shop}">Kemeja PDH / PDL</a></li>
+                                                    <li><a th:href="@{/shop}">Kaos Olahraga</a></li>
+                                                    <li><a th:href="@{/shop}">Stelan</a></li>
+                                                    <li><a th:href="@{/shop}">Rompi</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- end col-3 -->
+                                        <div class="col-menu col-md-4">
+                                            <h6 class="title">Accessories</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a th:href="@{/shop}">Jilbab</a></li>
+                                                    <li><a th:href="@{/shop}">Topi</a></li>
+                                                    <li><a th:href="@{/shop}">Tas Ransel</a></li>
+                                                    <li><a th:href="@{/shop}">ID Card</a></li>
+                                                    <li><a th:href="@{/shop}">Totebag</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- end col-3 -->
+                                        <div class="col-menu col-md-4">
+                                            <h6 class="title">Lainnya</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a th:href="@{/shop}">Gantungan Kunci</a></li>
+                                                    <li><a th:href="@{/shop}">Notebook</a></li>
+                                                    <li><a th:href="@{/shop}">Jam Dinding</a></li>
+                                                    <li><a th:href="@{/shop}">Payung</a></li>
+                                                    <li><a th:href="@{/shop}">Tumbler</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-menu col-md-3">
+                                            <h6 class="title">Accessories</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a href="shop.html">Bags</a></li>
+                                                    <li><a href="shop.html">Sunglasses</a></li>
+                                                    <li><a href="shop.html">Fragrances</a></li>
+                                                    <li><a href="shop.html">Wallets</a></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                        <!-- end col-3 -->
+                                    </div>
+                                    <!-- end row -->
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/user/cart}">Keranjang</a></li>
+                                <li><a th:href="@{/user/checkout}">Checkout</a></li>
+                                <!-- <li><a href="my-account.html">My Account</a></li> -->
+                                <li><a th:href="@{/wishlist}">Wishlist</a></li>
+                                <li><a th:href="@{/shop-detail}">Detail</a></li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="service.html">Our Service</a></li> -->
+                        <li class="nav-item"><a class="nav-link" th:href="@{/contact-us}">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li class="side-menu">
+                            <a href="#">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge">3</span>
+                            </a>
+                        </li>
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">
+                            <i class="fa fa-sign-in text-danger font-weight-bold"></i></a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">
+                            <i class="fa fa-sign-out text-danger font-weight-bold"></i></a></li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                <li class="cart-box">
+                    <ul class="cart-list">
+                        <li>
+                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-01.jpg}" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Delica omtantur </a></h6>
+                            <p>1x - <span class="price">$80.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-02.jpg}" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Omnes ocurreret</a></h6>
+                            <p>1x - <span class="price">$60.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-03.jpg}" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Agam facilisis</a></h6>
+                            <p>1x - <span class="price">$40.00</span></p>
+                        </li>
+                        <li class="total">
+                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <span class="float-right"><strong>Total</strong>: $180.00</span>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <!-- End Side Menu -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search" id="search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Shop</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                        <li class="breadcrumb-item active">Shop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        <div class="search-product">
+                            <form action="#">
+                                <input class="form-control" placeholder="Search here..." type="text">
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+                        <div class="filter-sidebar-left">
+                            <div class="title-left">
+                                <h3>Kategori</h3>
+                            </div>
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Pakaian <small class="text-muted">(100)</small>
+								</a>
+                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action active">Wearpack <small class="text-muted">(50)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Jas Almamater <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Jaket <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Kemeja PDH / PDL <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Kaos Olahraga <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Stelan <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Rompi <small class="text-muted">(20)</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Accessories <small class="text-muted">(50)</small>
+								</a>
+                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action">Jilbab <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Topi <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Tas Ransel <small class="text-muted">(20)</small></a>
+                                            small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Totebag <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">ID Card <small class="text-muted">(20)</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Lainnya <small class="text-muted">(50)</small>
+								</a>
+                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action">Gantungan Kunci <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Notebook <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Jam Dinding <small class="text-muted">(20)</small></a>
+                                            small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Payung <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Tumbler <small class="text-muted">(20)</small></a>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Lainnya <small class="text-muted">(100)</small>
+								</a>
+                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action">Gantungan Kunci <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Notebook <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Jam Dinding <small class="text-muted">(20)</small></a>
+                                            small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Payung <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Tumbler <small class="text-muted">(20)</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <a href="#" class="list-group-item list-group-item-action"> Lainny  <small class="text-muted">(150) </small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Accessories <small class="text-muted">(11)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Lainnya <small class="text-muted">(22)</small></a> -->
+                            </div>
+                        </div>
+                        <div class="filter-price-left">
+                            <div class="title-left">
+                                <h3>Price</h3>
+                            </div>
+                            <div class="price-box-slider">
+                                <div id="slider-range"></div>
+                                <p>
+                                    <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
+                                    <button class="btn hvr-hover" type="submit">Filter</button>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- <div class="filter-brand-left">
+                            <div class="title-left">
+                                <h3>Bahan</h3>
+                            </div>
+                            <div class="brand-box">
+                                <ul>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios1" value="Yes" type="radio">
+                                            <label for="Radios1"> Bahan1 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios2" value="No" type="radio">
+                                            <label for="Radios2"> Bahan2 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios3" value="declater" type="radio">
+                                            <label for="Radios3"> Bahan3 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios4" value="declater" type="radio">
+                                            <label for="Radios4"> Bahan4 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios5" value="declater" type="radio">
+                                            <label for="Radios5"> Bahan5 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios6" value="declater" type="radio">
+                                            <label for="Radios6"> Bahan6 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios7" value="declater" type="radio">
+                                            <label for="Radios7"> Bahan7 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios8" value="declater" type="radio">
+                                            <label for="Radios8"> Bahan8 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios9" value="declater" type="radio">
+                                            <label for="Radios9"> Bahan9 </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios10" value="declater" type="radio">
+                                            <label for="Radios10"> Bahan10 </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+                                <div class="toolbar-sorter-right">
+                                    <span>Sort by </span>
+                                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+									<option data-display="Select">Nothing</option>
+									<option value="1">Popularity</option>
+									<option value="2">High Price → High Price</option>
+									<option value="3">Low Price → High Price</option>
+									<option value="4">Best Selling</option>
+								</select>
+                                </div>
+                                <p>Showing all 4 results</p>
+                            </div>
+                            <div class="col-12 col-sm-4 text-center text-sm-right">
+                                <ul class="nav nav-tabs ml-auto">
+                                    <li>
+                                        <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" th:each="product : ${listProduct}">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Sale</p>
+                                                    </div>
+                                                    <div th:each="image, iterStat : ${product.image}" th:if="${iterStat.index == 0}">
+                                                        <img class="img-fluid" th:src="@{${image.url}}" alt="Product Image" width="200" />
+                                                    </div>
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a th:href="@{'/products/view/' + ${product.id}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a href = "#" class="cart" data-toggle="modal" th:data-target="'#modal-' + ${product.id}">Add to Cart</a>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" th:id="'modal-' + ${product.id}">
+                                                          <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" th:text="${product.name}"></h5>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                <!-- Forms for Add to Cart and Buy -->
+                                                                <form th:action="@{'/products/addToCart/' + ${product.id}}" method="post">
+                                                                  <input type="hidden" name="productId" th:value="${product.id}" />
+                                                                  <label for="quantity">Quantity:</label>
+                                                                  <input type="number" id="quantity" name="quantity" min="1" max="100">
+                                                                  <button type="submit" class="btn btn-primary mt-2">Add to Cart</button>
+                                                                </form>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4 th:text="${product.name}"></h4>
+                                                    <h5 th:text="${product.price}"></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Shop Page -->
+
+    <!-- Start Instagram Feed  -->
+    <div class="instagram-box">
+        <div class="main-instagram owl-carousel owl-theme">
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{/assets/img/instagram-img-01.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{/assets/img/instagram-img-02.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{/assets/img/instagram-img-03.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{/assets/img/instagram-img-04.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{assets/img/instagram-img-05.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{assets/img/instagram-img-06.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{assets/img/instagram-img-07.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{assets/img/instagram-img-08.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{assets/img/instagram-img-09.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img th:src="@{assets/img/instagram-img-05.jpg}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Instagram Feed  -->
+
+
+    <!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>Tentang Jimbung Industrial</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Our Sitemap</a></li>
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Jalan ... <br>Sragen,<br>Jawa
+                                        Tengah</p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">08 .....</a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a
+                                            href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2023 <a href="#">Jimbung Industrial</a> Design By :
+            <a href="https://html.design/">Politeknik Statistika STIS</a>
+        </p>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL JS FILES -->
+    <script th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/assets/js/popper.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <!-- ALL PLUGINS -->
+    <script th:src="@{/assets/js/jquery.superslides.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap-select.js}"></script>
+    <script th:src="@{/assets/js/inewsticker.js}"></script>
+    <script th:src="@{/assets/js/bootsnav.js}"></script>
+    <script th:src="@{/assets/js/images-loded.min.js}"></script>
+    <script th:src="@{/assets/js/isotope.min.js}"></script>
+    <script th:src="@{/assets/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/assets/js/baguetteBox.min.js}"></script>
+    <script th:src="@{/assets/js/form-validator.min.js}"></script>
+    <script th:src="@{/assets/js/contact-form-script.js}"></script>
+    <script th:src="@{/assets/js/custom.js}"></script>
+</body>
+
+</html>

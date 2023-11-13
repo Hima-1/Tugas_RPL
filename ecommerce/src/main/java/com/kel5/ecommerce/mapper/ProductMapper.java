@@ -1,4 +1,4 @@
-package com.kel5.ecommerce.util;
+package com.kel5.ecommerce.mapper;
 
 import com.kel5.ecommerce.dto.ProductDto;
 import com.kel5.ecommerce.entity.Product;
