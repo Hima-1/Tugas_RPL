@@ -39,6 +39,7 @@ public class SpringSecurityConfig{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                     .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css").permitAll()
                         .requestMatchers("/registration/**").permitAll()
                         .requestMatchers("/change-password").permitAll()
                         .requestMatchers("/forgot_password").permitAll()

@@ -66,7 +66,6 @@ public class ProductController {
     @GetMapping("/products/view/{id}")
     public String viewProduct(@PathVariable("id") Long id, Model model) {
         Optional<Product> product = productService.getProductById(id);
-
         if (product.isPresent()) {
             model.addAttribute("product", product.get());
             return "admin/rincian_produk";

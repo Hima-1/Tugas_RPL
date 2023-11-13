@@ -3,13 +3,16 @@ package com.kel5.ecommerce.controller;
 import com.kel5.ecommerce.entity.Blog;
 import com.kel5.ecommerce.entity.Category;
 import com.kel5.ecommerce.entity.Image;
+import com.kel5.ecommerce.entity.Product;
 import com.kel5.ecommerce.entity.Subcategory;
 import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.repository.BlogRepository;
 import com.kel5.ecommerce.repository.CategoryRepository;
 import com.kel5.ecommerce.repository.SubcategoryRepository;
+import com.kel5.ecommerce.repository.ProductRepository;
 import com.kel5.ecommerce.service.BlogService;
 import com.kel5.ecommerce.service.ImageService;
+import com.kel5.ecommerce.service.ProductService;
 import com.kel5.ecommerce.service.UserService;
 import com.kel5.ecommerce.util.FileUploadUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,6 +32,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
@@ -41,17 +45,24 @@ import org.springframework.web.servlet.view.RedirectView;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ProductService productService;
+    
     @Autowired
     private ImageService imageService;
     
     @Autowired
     private CategoryRepository categoryRepository;
-    
-    @Autowired
-    private SubcategoryRepository subcategoryRepository;
-    
+        
     @Autowired
     private BlogRepository blogRepository;
+
+    @Autowired
+    private SubcategoryRepository subcategoryRepository;
+        
+    @Autowired
+    private ProductRepository productRepository;
 
     private String getLogedinUsername() {
         Authentication authentication =
@@ -79,6 +90,22 @@ public class UserController {
         return "user/shop";
     }    
     
+    @GetMapping("/catalogue")
+    public String catalogue(ModelMap model){
+        String username = getLogedinUsername();
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "user/catalogue";
+    }   
+    
+    @GetMapping("/catalogue/{subcategoryId}")
+    public String catalogue(@PathVariable Long subcategoryId,ModelMap model){
+        String username = getLogedinUsername();
+        Subcategory subcategory = subcategoryRepository.findById(subcategoryId).orElse(null);
+            List<Product> products = productRepository.findBySubcategory(subcategory);
+            model.addAttribute("products", products);
+            return "/user/catalogue";
+    } 
     @GetMapping("/shop/{subcategoryId}")
     public String viewSubcategory(@PathVariable Long subcategoryId, Model model) {
         Subcategory subcategory = subcategoryRepository.findById(subcategoryId).orElse(null);
@@ -86,10 +113,21 @@ public class UserController {
         return "subcategory";
     }
     
-    @GetMapping("/shop-detail")
-    public String shopDetail(ModelMap model){
+    @GetMapping("/shop-detail/{productId}")
+    public String shopDetail(@PathVariable("productId") Long id, Model model){
         String username = getLogedinUsername();
-        return "user/shop-detail";
+        Optional<Product> product = productService.getProductById(id);
+
+        if (product.isPresent()) {
+            model.addAttribute("product", product.get());
+            List<Product> relatedProducts = productRepository.findByCategory(product.get().getCategory());
+            model.addAttribute("related", relatedProducts);
+            return "/user/shop-detail";
+        } else {
+            // Handle product not found scenario
+            model.addAttribute("error", "Product not found");
+            return "user/catalogue";
+        }
     }    
     
     @GetMapping("/about")

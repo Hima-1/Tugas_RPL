@@ -26,7 +26,7 @@ public class Subcategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private boolean status =true;
+    private boolean status = true;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
