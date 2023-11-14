@@ -40,214 +40,7 @@
 
 <body>
 
-    <!-- Start Main Top -->
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> Diskon besar besaran
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Pantau selalu website kami
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Selamat Berbelanja
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Banyak rekomendasi desain menarik
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Harga terjangkau
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Kualitas terpercaya
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Banyak barang berkualitas
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Belanja sekarang
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <!-- <div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-						<option>¥ JPY</option>
-						<option>$ USD</option>
-						<option>€ EUR</option>
-					</select>
-                    </div> -->
-                    <div class="right-phone-box">
-                        <p>Kontak Kami <a href="#"> 082226103365</a></p>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a th:href="@{/my-account}">My Account</a></li>
-                            <li><a href="#">Our location</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Top -->
-
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav" style="height: 80px;">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
-                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" th:href="@{/}"><img th:src="@{/assets/img/logo_1.png}" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/about}">About Us</a></li>
-                        <li class="dropdown megamenu-fw">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
-                            <ul class="dropdown-menu megamenu-content" role="menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-menu col-md-4">
-                                            <h6 class="title">Pakaian</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a th:href="@{/shop}">Wearpack</a></li>
-                                                    <li><a th:href="@{/shop}">Jas Almamater</a></li>
-                                                    <li><a th:href="@{/shop}">Jaket</a></li>
-                                                    <li><a th:href="@{/shop}">Kemeja PDH / PDL</a></li>
-                                                    <li><a th:href="@{/shop}">Kaos Olahraga</a></li>
-                                                    <li><a th:href="@{/shop}">Stelan</a></li>
-                                                    <li><a th:href="@{/shop}">Rompi</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-4">
-                                            <h6 class="title">Accessories</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a th:href="@{/shop}">Jilbab</a></li>
-                                                    <li><a th:href="@{/shop}">Topi</a></li>
-                                                    <li><a th:href="@{/shop}">Tas Ransel</a></li>
-                                                    <li><a th:href="@{/shop}">ID Card</a></li>
-                                                    <li><a th:href="@{/shop}">Totebag</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-4">
-                                            <h6 class="title">Lainnya</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a th:href="@{/shop}">Gantungan Kunci</a></li>
-                                                    <li><a th:href="@{/shop}">Notebook</a></li>
-                                                    <li><a th:href="@{/shop}">Jam Dinding</a></li>
-                                                    <li><a th:href="@{/shop}">Payung</a></li>
-                                                    <li><a th:href="@{/shop}">Tumbler</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-menu col-md-3">
-                                            <h6 class="title">Accessories</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="shop.html">Bags</a></li>
-                                                    <li><a href="shop.html">Sunglasses</a></li>
-                                                    <li><a href="shop.html">Fragrances</a></li>
-                                                    <li><a href="shop.html">Wallets</a></li>
-                                                </ul>
-                                            </div>
-                                        </div> -->
-                                        <!-- end col-3 -->
-                                    </div>
-                                    <!-- end row -->
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                            <ul class="dropdown-menu">
-                                <li><a th:href="@{/cart}">Keranjang</a></li>
-                                <li><a th:href="@{/checkout}">Checkout</a></li>
-                                <!-- <li><a href="my-account.html">My Account</a></li> -->
-                                <li><a th:href="@{/wishlist}">Wishlist</a></li>
-                                <li><a th:href="@{/shop-detail}">Detail</a></li>
-                            </ul>
-                        </li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="service.html">Our Service</a></li> -->
-                        <li class="nav-item"><a class="nav-link" th:href="@{/contact-us}">Contact Us</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu">
-                            <a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span class="badge">3</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-danger"><i
-                                    class="fa fa-sign-out text-danger font-weight-bold"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
-            </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-01.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-02.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-03.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Main Top -->
+    <div th:replace="user/fragments/user-header :: header"></div>
 
     <!-- Start Top Search -->
     <div class="top-search">
@@ -276,8 +69,9 @@
         </div>
     </div>
     <!-- End All Title Box -->
-
+    
     <!-- Start Cart  -->
+    <div th:if="${error}" th:text="${error}"></div>
     <div class="cart-box-main">
         <div class="container">
             <div class="row">
@@ -295,76 +89,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr th:each="item, iterStat : ${cart.cartItems}">
                                     <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" th:src="@{/assets/img/img-pro-01.jpg}" alt="" />
-					</a>
+                                        <img class="img-fluid" th:src="@{${item.productUrl}}" alt="Product Image" width="200" />
                                     </td>
                                     <td class="name-pr">
-                                        <a href="#">
-                                            Lorem ipsum dolor sit amet
-					</a>
+                                        <a th:text="${item.productName}"></a>
                                     </td>
                                     <td class="price-pr">
-                                        <p>$ 80.0</p>
+                                        <p th:text="${item.price}"></p>
                                     </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
+                                    <td class="quantity-box"><input type="number" size="4" th:value="${item.quantity}" min="0" step="1" class="c-input-text qty text"></td>
                                     <td class="total-pr">
-                                        <p>$ 80.0</p>
+                                        <p th:text="${item.totalItemPrice}"></p>
                                     </td>
                                     <td class="remove-pr">
-                                        <a href="#">
                                             <i class="fas fa-times"></i>
-					</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" th:src="@{/assets/img/img-pro-02.jpg}" alt="" />
-					</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-                                            Lorem ipsum dolor sit amet
-					</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 60.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-                                            <i class="fas fa-times"></i>
-					</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" th:src="@{/assets/img/img-pro-03.jpg}" alt="" />
-					</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-                                            Lorem ipsum dolor sit amet
-					</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 30.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-                                            <i class="fas fa-times"></i>
-					</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -374,16 +114,6 @@
             </div>
 
             <div class="row my-5">
-                <div class="col-lg-6 col-sm-6">
-                    <div class="coupon-box">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                            <div class="input-group-append">
-                                <button class="btn btn-theme" type="button">Apply Coupon</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-6 col-sm-6">
                     <div class="update-box">
                         <input value="Update Cart" type="submit">
@@ -398,20 +128,7 @@
                         <h3>Order summary</h3>
                         <div class="d-flex">
                             <h4>Sub Total</h4>
-                            <div class="ml-auto font-weight-bold"> $ 130 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $ 40 </div>
-                        </div>
-                        <hr class="my-1">
-                        <div class="d-flex">
-                            <h4>Coupon Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $ 10 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Tax</h4>
-                            <div class="ml-auto font-weight-bold"> $ 2 </div>
+                            <div class="ml-auto font-weight-bold" th:text="${cart.totalPrice}"></div>
                         </div>
                         <div class="d-flex">
                             <h4>Shipping Cost</h4>
@@ -420,104 +137,22 @@
                         <hr>
                         <div class="d-flex gr-total">
                             <h5>Grand Total</h5>
-                            <div class="ml-auto h5"> $ 388 </div>
+                            <div class="ml-auto h5" th:text="${cart.totalPrice}"></div>
                         </div>
-                        <hr> </div>
+                        <hr>
+                    </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a th:href="@{/checkout}" class="ml-auto btn hvr-hover">Checkout</a> </div>
+                <div class="col-12 d-flex shopping-box">
+                    <form method="post" th:action="@{/user/cart/checkout}">
+                        <button type="submit" class="ml-auto btn hvr-hover">Checkout</button>
+                    </form>
+                </div>
             </div>
-
         </div>
     </div>
+
+
     <!-- End Cart -->
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{/assets/img/instagram-img-01.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{/assets/img/instagram-img-02.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{/assets/img/instagram-img-03.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{/assets/img/instagram-img-04.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{assets/img/instagram-img-05.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{assets/img/instagram-img-06.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{assets/img/instagram-img-07.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{assets/img/instagram-img-08.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{assets/img/instagram-img-09.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img th:src="@{assets/img/instagram-img-05.jpg}" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
-
 
     <!-- Start Footer  -->
     <footer>

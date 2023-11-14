@@ -6,7 +6,9 @@ package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.entity.Announcement;
 import com.kel5.ecommerce.entity.Blog;
+import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.service.AnnouncementService;
+import com.kel5.ecommerce.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,9 +30,14 @@ public class AnnouncementController {
     
     @Autowired
     private AnnouncementService announcementService;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/announcements")
     public String viewHomePage(Model model){
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return findPaginated(1, "id", "asc", model);
     }
     
@@ -39,6 +46,8 @@ public class AnnouncementController {
         List<Announcement> listAnnouncement = announcementService.getAllAnnouncement(keyword);
         model.addAttribute("listAnnouncement", listAnnouncement);
         model.addAttribute("keyword", keyword);
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return "admin/announcement";
     }
 
@@ -46,6 +55,8 @@ public class AnnouncementController {
     public String showNewAnnouncementForm(Model model) {
         Announcement announcement = new Announcement();
         model.addAttribute("announcement", announcement);
+                User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return "admin/addAnnouncementForm";
     }
 
@@ -65,6 +76,8 @@ public class AnnouncementController {
     public String showAnnouncementFormForUpdate(@PathVariable("id") long id, Model model) {
         Announcement announcement = announcementService.getAnnouncementById(id);
         model.addAttribute("announcement", announcement);
+                User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return "admin/updateAnnouncementForm";
     }
 
@@ -80,6 +93,8 @@ public class AnnouncementController {
             @RequestParam("sortDir") String sortDir,
                     Model model){
          int pageSize = 3;
+                 User user = userService.getUserLogged();
+        model.addAttribute("user", user);
          
          Page<Announcement> page = announcementService.findPaginated(pageNo, pageSize, sortField, sortDir);
          List<Announcement> listAnnouncement = page.getContent();

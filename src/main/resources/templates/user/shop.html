@@ -35,218 +35,82 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+/* Center the modal */
+.modal {
+    text-align: center;
+    padding: 0 !important;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.modal-title{
+    text-align:center;
+}
+
+/* Style for the modal content */
+.modal-content {
+    font-weight: bold;
+    color: black; /* Text color */
+}
+
+/* Style for the close button */
+.modal-header .close {
+    font-size: 1.5rem;
+}
+
+/* Style for the form elements inside the modal body */
+.modal-body {
+    text-align: center; /* Center-align the content in the modal body */
+    width:500px;
+}
+
+.modal-body label {
+    font-weight: bold;
+}
+
+/* Style for the quantity input */
+#quantity {
+    margin-bottom: 10px; /* Add space below the quantity input */
+}
+
+/* Style for the Add to Cart button */
+.modal-body button {
+    display: block; /* Display the button as a block element (full width) */
+    margin: 0 auto; /* Center the button horizontally */
+    margin-top: 10px; /* Add space above the button */
+}
+
+/* Style for the form elements inside the modal body */
+.modal-body label {
+    font-weight: bold;
+}
+
+/* Style for the Quantity input */
+.modal-body #quantity {
+    margin-bottom: 10px; /* Add space below the quantity input */
+}
+
+/* Style for the Add to Cart button */
+.modal-body button {
+    display: block; /* Display the button as a block element (full width) */
+    margin: 0 auto; /* Center the button horizontally */
+    margin-top: 10px; /* Add space above the button */
+}
+
+
+    </style>
 
 </head>
 
 <body>
 
     <!-- Start Main Top -->
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> Diskon besar besaran
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Pantau selalu website kami
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Selamat Berbelanja
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Banyak rekomendasi desain menarik
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Harga terjangkau
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Kualitas terpercaya
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Banyak barang berkualitas
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Belanja sekarang
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <!-- <div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-						<option>¥ JPY</option>
-						<option>$ USD</option>
-						<option>€ EUR</option>
-					</select>
-                    </div> -->
-                    <div class="right-phone-box">
-                        <p>Kontak Kami <a href="#"> 082226103365</a></p>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a th:href="@{/my-account}">My Account</a></li>
-                            <li><a href="#">Our location</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Top -->
-
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav" style="height: 80px;">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
-                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" th:href="@{/}"><img th:src="@{/assets/img/logo_1.png}" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/about}">About Us</a></li>
-                        <li class="dropdown megamenu-fw">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
-                            <ul class="dropdown-menu megamenu-content" role="menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-menu col-md-4">
-                                            <h6 class="title">Pakaian</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a th:href="@{/shop}">Wearpack</a></li>
-                                                    <li><a th:href="@{/shop}">Jas Almamater</a></li>
-                                                    <li><a th:href="@{/shop}">Jaket</a></li>
-                                                    <li><a th:href="@{/shop}">Kemeja PDH / PDL</a></li>
-                                                    <li><a th:href="@{/shop}">Kaos Olahraga</a></li>
-                                                    <li><a th:href="@{/shop}">Stelan</a></li>
-                                                    <li><a th:href="@{/shop}">Rompi</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-4">
-                                            <h6 class="title">Accessories</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a th:href="@{/shop}">Jilbab</a></li>
-                                                    <li><a th:href="@{/shop}">Topi</a></li>
-                                                    <li><a th:href="@{/shop}">Tas Ransel</a></li>
-                                                    <li><a th:href="@{/shop}">ID Card</a></li>
-                                                    <li><a th:href="@{/shop}">Totebag</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-4">
-                                            <h6 class="title">Lainnya</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a th:href="@{/shop}">Gantungan Kunci</a></li>
-                                                    <li><a th:href="@{/shop}">Notebook</a></li>
-                                                    <li><a th:href="@{/shop}">Jam Dinding</a></li>
-                                                    <li><a th:href="@{/shop}">Payung</a></li>
-                                                    <li><a th:href="@{/shop}">Tumbler</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-menu col-md-3">
-                                            <h6 class="title">Accessories</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="shop.html">Bags</a></li>
-                                                    <li><a href="shop.html">Sunglasses</a></li>
-                                                    <li><a href="shop.html">Fragrances</a></li>
-                                                    <li><a href="shop.html">Wallets</a></li>
-                                                </ul>
-                                            </div>
-                                        </div> -->
-                                        <!-- end col-3 -->
-                                    </div>
-                                    <!-- end row -->
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                            <ul class="dropdown-menu">
-                                <li><a th:href="@{/cart}">Keranjang</a></li>
-                                <li><a th:href="@{/checkout}">Checkout</a></li>
-                                <!-- <li><a href="my-account.html">My Account</a></li> -->
-                                <li><a th:href="@{/wishlist}">Wishlist</a></li>
-                                <li><a th:href="@{/shop-detail}">Detail</a></li>
-                            </ul>
-                        </li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="service.html">Our Service</a></li> -->
-                        <li class="nav-item"><a class="nav-link" th:href="@{/contact-us}">Contact Us</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu">
-                            <a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span class="badge">3</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-danger"><i
-                                    class="fa fa-sign-out text-danger font-weight-bold"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
-            </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-01.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-02.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-03.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
+    <div th:replace="user/fragments/user-header :: header"></div>
     <!-- End Main Top -->
 
     <!-- Start Top Search -->
@@ -294,78 +158,27 @@
                                 <h3>Kategori</h3>
                             </div>
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Pakaian <small class="text-muted">(100)</small>
+                                <div class="list-group-collapse sub-men" th:each="category : ${categories}">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1" th:text="${category.name}">Pakaian <small class="text-muted"></small>
 								</a>
                                     <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action active">Wearpack <small class="text-muted">(50)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Jas Almamater <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Jaket <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Kemeja PDH / PDL <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Kaos Olahraga <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Stelan <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Rompi <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action active" th:each="subcategory : ${subcategories}" th:if="${subcategory.category.id == category.id}" th:href="@{'/user/shop/' + ${subcategory.id}}" th:text="${subcategory.name}"> <small class="text-muted">(50)</small></a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Accessories <small class="text-muted">(50)</small>
-								</a>
-                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">Jilbab <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Topi <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Tas Ransel <small class="text-muted">(20)</small></a>
-                                            small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Totebag <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">ID Card <small class="text-muted">(20)</small></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Lainnya <small class="text-muted">(50)</small>
-								</a>
-                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">Gantungan Kunci <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Notebook <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Jam Dinding <small class="text-muted">(20)</small></a>
-                                            small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Payung <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Tumbler <small class="text-muted">(20)</small></a>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Lainnya <small class="text-muted">(100)</small>
-								</a>
-                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">Gantungan Kunci <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Notebook <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Jam Dinding <small class="text-muted">(20)</small></a>
-                                            small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Payung <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Tumbler <small class="text-muted">(20)</small></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <a href="#" class="list-group-item list-group-item-action"> Lainny  <small class="text-muted">(150) </small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Accessories <small class="text-muted">(11)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Lainnya <small class="text-muted">(22)</small></a> -->
                             </div>
                         </div>
                         <div class="filter-price-left">
-                            <div class="title-left">
+                            <!-- <div class="title-left">
                                 <h3>Price</h3>
-                            </div>
+                            </div> -->
                             <div class="price-box-slider">
                                 <div id="slider-range"></div>
-                                <p>
+                                <!-- <p>
                                     <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
                                     <button class="btn hvr-hover" type="submit">Filter</button>
-                                </p>
+                                </p> -->
                             </div>
                         </div>
                         <!-- <div class="filter-brand-left">
@@ -454,7 +267,7 @@
 									<option value="4">Best Selling</option>
 								</select>
                                 </div>
-                                <p>Showing all 4 results</p>
+                                <p>Showing all results</p>
                             </div>
                             <div class="col-12 col-sm-4 text-center text-sm-right">
                                 <ul class="nav nav-tabs ml-auto">
@@ -471,498 +284,55 @@
                         <div class="row product-categorie-box">
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <p th:if="${#lists.isEmpty(products)}" style="text-align: center; font-weight: bold;">Produk tidak tersedia</p>
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                    
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" th:each="product : ${products}">
                                             <div class="products-single fix">
+                                                
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img th:src="@{/assets/img/pricelist_wearpack.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Wearpack</h4>
-                                                    <h5> 145k - 170k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/rompi.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Rompi</h4>
-                                                    <h5> By Request</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/pricelist_jaket.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Jaket</h4>
-                                                    <h5> 130k - 160k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/pricelist_pdhpdl.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Kemeja PDH / PDL</h4>
-                                                    <h5> 100k - 160k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/pricelist_jasalmet.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Jas Almamater</h4>
-                                                    <h5> 122k-145k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/kaos_or.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Kaos Olahraga</h4>
-                                                    <h5> By Request</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/img-pro-01.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Jilbab</h4>
-                                                    <h5> By Request</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/pricelist_topi.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Topi</h4>
-                                                    <h5> 20k-40k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/pricelist_payung.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Payung</h4>
-                                                    <h5> 33k - 80k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/ransel.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Ransel</h4>
-                                                    <h5>By Request</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/totebag.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Totebag</h4>
-                                                    <h5>By Request</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/jam dinding.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Jam Dinding</h4>
-                                                    <h5> 50k-165k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/notebook.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Notebook</h4>
-                                                    <h5>4k - 14k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/ganci.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Gantungan Kunci</h4>
-                                                    <h5> 2k - 10k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/id card.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>ID Card</h4>
-                                                    <h5>5k-20k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/tumbler.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Tumbler</h4>
-                                                    <h5>By Request</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/atk.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Alat Tulis</h4>
-                                                    <h5>2k - 20k</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="new">New</p>
-                                                    </div>
-                                                    <img th:src="@{/assets/img/stelan.jpg}" class="img-fluid fit" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Stelan</h4>
-                                                    <h5>By Request</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="list-view">
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="new">New</p>
-                                                        </div>
-                                                        <img th:src="@{/assets/img/img-pro-01.jpg}" class="img-fluid fit" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                            </ul>
+                                                    <div th:each="image, iterStat : ${product.image}" th:if="${iterStat.index == 0}">
+                                                        <img class="img-fluid" th:src="@{${image.url}}" alt="Product Image" style="height: 200px; width: auto; display: block; margin-left: auto; margin-right: auto;"/>
 
-                                                        </div>
+                                                    </div>
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a th:href="@{'/user/shop-detail/' + ${product.id}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a href="#" class="cart" data-toggle="modal" th:data-target="'#modal-' + ${product.id}">Add to Cart</a>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>Lorem ipsum dolor sit amet</h4>
-                                                    <h5> <del>$ 60.00</del> $40.79</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="sale">Sale</p>
+                                                
+                                                
+                                                <!-- Modal -->
+                                                        <div class="modal fade" th:id="'modal-' + ${product.id}" tabindex="-1" role="dialog">
+                                                          <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" th:text="${product.name}"></h5>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                <!-- Forms for Add to Cart and Buy -->
+                                                                <form th:action="@{'/user/products/addToCart/' + ${product.id}}" method="post">
+                                                                  <input type="hidden" name="productId" th:value="${product.id}" />
+                                                                  <label for="quantity">Quantity:</label>
+                                                                  <input type="number" id="quantity" name="quantity" min="1" max="100">
+                                                                  <button type="submit" class="btn btn-primary mt-2" style="background-color: #8F1D14;">Add to Cart</button>
+                                                                </form>
+                                                              </div>
+                                                            </div>
+                                                          </div>
                                                         </div>
-                                                        <img th:src="@{/assets/img/img-pro-02.jpg}" class="img-fluid fit" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>Lorem ipsum dolor sit amet</h4>
-                                                    <h5> <del>$ 60.00</del> $40.79</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="sale">Sale</p>
-                                                        </div>
-                                                        <img th:src="@{/assets/img/img-pro-03.jpg}" class="img-fluid fit" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>Lorem ipsum dolor sit amet</h4>
-                                                    <h5> <del>$ 60.00</del> $40.79</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                <div class="why-text">
+                                                    <h4 th:text="${product.name}"></h4>
+                                                    <small>Start From </small>
+                                                    <h5 th:text="'Rp. ' + ${product.price}"></h5>
                                                 </div>
                                             </div>
                                         </div>

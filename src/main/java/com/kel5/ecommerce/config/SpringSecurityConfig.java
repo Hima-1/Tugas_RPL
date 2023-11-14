@@ -50,13 +50,15 @@ public class SpringSecurityConfig{
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/login/**").permitAll()
+                        .requestMatchers("/user/").permitAll()
                         .requestMatchers("/user/order").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/user/my-account").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/user/cart").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/user/announcements").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/user/announcement").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/user/checkout").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .requestMatchers("/static/**").permitAll()
-                        .requestMatchers("/").permitAll()
+                        
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

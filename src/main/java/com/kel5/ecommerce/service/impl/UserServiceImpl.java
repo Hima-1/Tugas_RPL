@@ -2,6 +2,7 @@
 package com.kel5.ecommerce.service.impl;
 
 import com.kel5.ecommerce.dto.UserDto;
+import com.kel5.ecommerce.entity.Cart;
 import com.kel5.ecommerce.entity.ConfirmationToken;
 import com.kel5.ecommerce.entity.Role;
 import com.kel5.ecommerce.entity.User;
@@ -9,6 +10,7 @@ import com.kel5.ecommerce.mapper.UserMapper;
 import com.kel5.ecommerce.repository.ConfirmationTokenRepository;
 import com.kel5.ecommerce.repository.RoleRepository;
 import com.kel5.ecommerce.repository.UserRepository;
+import com.kel5.ecommerce.repository.CartRepository;
 import com.kel5.ecommerce.service.UserService;
 import com.kel5.ecommerce.util.TbConstants;
 import org.springframework.mail.SimpleMailMessage;
@@ -22,6 +24,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static com.kel5.ecommerce.mapper.UserMapper.mapToUserDto;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
@@ -29,6 +32,9 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     private final RoleRepository roleRepository;
+    
+    @Autowired
+    private CartRepository cartRepository;
 
     private final PasswordEncoder passwordEncoder;
     private final ConfirmationTokenRepository confirmationTokenRepository;
@@ -140,6 +146,18 @@ public class UserServiceImpl implements UserService {
             User user = userRepository.findByEmail(token.getUser().getEmail());
             if (user != null) {
                 user.setEnabled(true);
+                            // Buat instance baru dari Cart
+            Cart newCart = new Cart();
+            newCart.setUser(user);
+            // Simpan Cart ke database
+            // Pastikan Anda memiliki CartRepository untuk melakukan operasi ini
+            cartRepository.save(newCart);
+
+            // Setelah Cart disimpan, tetapkan ke user
+            user.setCarts(newCart);
+
+            // Simpan perubahan pada user
+            userRepository.save(user);
                 userRepository.save(user);
             }
     }
@@ -156,5 +174,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByName(String name) {
         return userRepository.findByName(name);
+    }
+    
+    @Override
+    public Cart getUserCart() {
+        return null;
     }
 }

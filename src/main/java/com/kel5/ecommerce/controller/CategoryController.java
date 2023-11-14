@@ -7,7 +7,9 @@ package com.kel5.ecommerce.controller;
 import com.kel5.ecommerce.entity.Blog;
 import com.kel5.ecommerce.entity.Category;
 import com.kel5.ecommerce.entity.Subcategory;
+import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.service.CategoryService;
+import com.kel5.ecommerce.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,8 +34,13 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private UserService userService;
+    
     @GetMapping("/add-category")
     public String addCategory(Model model) {
+                User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         Category category = new Category();
         model.addAttribute("category", category);
         return "admin/addCategoryForm";
@@ -42,7 +49,9 @@ public class CategoryController {
     @GetMapping("/add-subcategory")
     public String addSubcategory(Model model) {
         Subcategory subcategory = new Subcategory();
-         List<Category> categories = categoryService.getAllCategories();
+        List<Category> categories = categoryService.getAllCategories();
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
          model.addAttribute("subcategory", subcategory);
          model.addAttribute("categories", categories);
          return "admin/addSubcategoryForm";

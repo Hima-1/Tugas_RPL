@@ -46,8 +46,11 @@ public class ProductServiceImpl implements ProductService {
     public Product updateProduct(Long id, Product product) {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + id));
-        // Update properties of existingProduct with those from product
-        // ...
+        existingProduct.setName(product.getName());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setStock(product.getStock());
+        existingProduct.setWeight(product.getWeight());
         return productRepository.save(existingProduct);
     }
 //        @Override
@@ -56,12 +59,6 @@ public class ProductServiceImpl implements ProductService {
 //        Product existingProduct = productRepository.findById(id)
 //                .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + id));
 //
-//
-//        existingProduct.setName(updatedProduct.getName());
-//        existingProduct.setDescription(updatedProduct.getDescription());
-//        existingProduct.setPrice(updatedProduct.getPrice());
-//        existingProduct.setStock(updatedProduct.getStock());
-//        existingProduct.setWeight(updatedProduct.getWeight());
 //        Product updated = productRepository.save(existingProduct);
 //        return updated;
 //    }

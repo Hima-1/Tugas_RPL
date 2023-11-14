@@ -62,5 +62,10 @@ public class User {
         } else {
             this.roles = new ArrayList<>();
         }
-    }   
+    } 
+    @OneToOne(mappedBy = "user")
+    private Cart carts;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
 }

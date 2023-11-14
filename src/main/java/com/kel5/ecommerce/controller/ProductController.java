@@ -7,8 +7,10 @@ import com.kel5.ecommerce.entity.Subcategory;
 import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.exception.ResourceNotFoundException;
 import com.kel5.ecommerce.repository.CategoryRepository;
+import com.kel5.ecommerce.repository.ProductRepository;
 import com.kel5.ecommerce.service.CategoryService;
 import com.kel5.ecommerce.service.ProductService;
+import com.kel5.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -27,12 +29,19 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-
+    
+    @Autowired
+    private ProductRepository productRepository;
+    
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private UserService userService;
     @GetMapping("/produk")
     public String viewHomePage(Model model) {
+                User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return findPaginated(1, "id", "asc", model);
     }
 
@@ -47,6 +56,8 @@ public class ProductController {
     // To display the form for adding a product
     @GetMapping("/add-product")
     public String showAddProductForm(Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         model.addAttribute("productDto", new ProductDto());
         return "admin/addProductForm";
     }
@@ -65,6 +76,8 @@ public class ProductController {
 
     @GetMapping("/products/view/{id}")
     public String viewProduct(@PathVariable("id") Long id, Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         Optional<Product> product = productService.getProductById(id);
         if (product.isPresent()) {
             model.addAttribute("product", product.get());
@@ -77,18 +90,21 @@ public class ProductController {
     }
     // To display the form for editing a product
 
- @GetMapping("/edit-product/{id}")
+    @GetMapping("/edit-product/{id}")
     public String showProductFormForUpdate(@PathVariable("id") Long id, Model model) {
-        try {
-            Product product = productService.updateProduct(id, new Product()); // Replace 'new Product()' with the actual product details you want to display for editing.
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get(); // Get the Product from the Optional
             model.addAttribute("product", product);
             return "admin/updateProductForm";
-        } catch (ResourceNotFoundException e) {
-            // Handle product not found scenario
+        } else {
             model.addAttribute("error", "Product not found");
             return "admin/Product"; // Redirect to an appropriate page or view.
         }
     }
+
 
     // Handle the form submission for editing
     @PostMapping("/update-product/{id}")
@@ -109,6 +125,8 @@ public class ProductController {
             @RequestParam("sortField") String sortField,
             @RequestParam("sortDir") String sortDir,
             Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         int pageSize = 10;
 
         Page<Product> page = productService.findPaginated(pageNo, pageSize, sortField, sortDir);
@@ -125,14 +143,16 @@ public class ProductController {
         model.addAttribute("listProduct", listProduct);
         return "admin/Product";
     }
-
-//    @PostMapping("/products/buy/{productId}")
-//    public String buyProduct(@AuthenticationPrincipal User currentUser,
-//                             @PathVariable("productId") Long productId,
-//                             @RequestParam("quantity") Integer quantity) {
-//        System.out.println("Bought product " + productId + " with quantity " + quantity);
-//        // You might need to adjust this method to handle the buying process
-//        // cartService.purchaseProduct(productId, quantity, currentUser);
-//        return "redirect:/products";
-//    }
+    @GetMapping("/delete-product/{id}")
+    public String deleteProduct(@PathVariable("id") Long id, Model model) {
+        try {
+            productService.deleteProduct(id);
+            model.addAttribute("message", "Product deleted successfully");
+            return "redirect:/admin/produk";
+        } catch (ResourceNotFoundException e) {
+            // Handle product not found scenario
+            model.addAttribute("error", "Product not found");
+            return "admin/Product"; // Redirect to an appropriate page or view.
+        }
+    }
 }

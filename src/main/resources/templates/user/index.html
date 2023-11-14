@@ -79,184 +79,79 @@
             height:100%;
             object-fit:cover;
         }
+        /* Styling for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width:50%;
+            height:auto;
+        }
+
+        /* Close button style */
+        .close {
+            color: #333;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .close:hover {
+            color: #f00;
+        }
+
+        /* Style for modal title */
+        #modalTitle {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Style for modal image */
+        #modalImage {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Style for modal description */
+        #modalDescription {
+            margin-top: 10px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        /* Responsive design for the modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 5% auto;
+                width: 90%;
+            }
+        }
     </style>
 
 </head>
 
 <body>
     <!-- Start Main Top -->
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> Diskon besar besaran
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Pantau selalu website kami
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Selamat Berbelanja
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Banyak rekomendasi desain menarik
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Harga terjangkau
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Kualitas terpercaya
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Banyak barang berkualitas
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Belanja sekarang
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <!-- <div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-						<option>¥ JPY</option>
-						<option>$ USD</option>
-						<option>€ EUR</option>
-					</select>
-                    </div> -->
-                    <div class="right-phone-box">
-                        <p>Kontak Kami <a href="#"> 082226103365</a></p>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a th:href="@{/my-account}">My Account</a></li>
-                            <li><a href="#">Our location</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Top -->
-
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav" style="height: 80px;">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
-                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" th:href="@{/}"><img th:src="@{/assets/img/logo_1.png}" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/about}">About Us</a></li>
-                        <li class="dropdown megamenu-fw">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
-                            <ul class="dropdown-menu megamenu-content" role="menu">
-                                <li>
-                    <div class="row">
-                    <div class="col-menu col-md-4" th:each="category : ${categories}">
-                        <h6 class="title" th:text="${category.name}"></h6>
-                        <div class="content">
-                            <ul class="menu-col">
-                                <li th:each="subcategory : ${subcategories}" th:if="${subcategory.category.id == category.id}">
-                                    <a th:href="@{'/user/catalogue/' + ${subcategory.id}}" th:text="${subcategory.name}"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- end col-3 -->
-                </div>
-                                    <!-- end row -->
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                            <ul class="dropdown-menu">
-                                <li><a th:href="@{/cart}">Keranjang</a></li>
-                                <li><a th:href="@{/checkout}">Checkout</a></li>
-                                <!-- <li><a href="my-account.html">My Account</a></li> -->
-                                <li><a th:href="@{/wishlist}">Wishlist</a></li>
-                                <li><a th:href="@{/shop-detail}">Detail</a></li>
-                            </ul>
-                        </li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="service.html">Our Service</a></li> -->
-                        <li class="nav-item"><a class="nav-link" th:href="@{/contact-us}">Contact Us</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu">
-                            <a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span class="badge">3</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a th:if="${name == null}" th:href="@{/login}" class="text-danger">
-                                <i class="fa fa-sign-in text-danger font-weight-bold"></i>
-                            </a>
-                            <a th:unless="${name == null}" th:href="@{/logout}" class="text-danger">
-                                <i class="fa fa-sign-out text-danger font-weight-bold"></i>
-                            </a>
-                        </li> 
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
-            </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-01.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-02.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img th:src="@{/assets/img/img-pro-03.jpg}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Main Top -->
-
+    <div th:replace="user/fragments/user-header :: header"></div>
     <!-- Start Top Search -->
     <div class="top-search">
         <div class="container">
@@ -279,7 +174,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Selamat Datang<br> Jimbung Industrial</strong></h1>
                             <p class="m-b-40">System Solution yaitu dengan melalui pemahaman system pada customer secara nyata dengan diskusi baik langsung maupun via internet, edukasi dan melibatkan tim manajemen serta pekerja yang berpengalaman pada bidangnya guna meningkatkan layanan, kualitas produk dan update fashion yang mengikuti perkembangan.</p>
-                            <p><a class="btn hvr-hover" th:href="@{/user/catalogue}">Belanja Sekarang</a></p>
+                            <p><a class="btn hvr-hover" th:href="@{/user/shop}">Belanja Sekarang</a></p>
                         </div>
                     </div>
                 </div>
@@ -291,7 +186,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Selamat Datang <br> Jimbung Industrial</strong></h1>
                             <p class="m-b-40">Sharing solution yaitu membuka diskusi baik intern manjemen maupun ekstern mitra kerja produksi, pemasaran dan konsumen guna memberikan saran maupun evaluasi kinerja</p>
-                            <p><a class="btn hvr-hover" href="#">Belanja Sekarang</a></p>
+                            <p><a class="btn hvr-hover" href="@{/user/shop}">Belanja Sekarang</a></p>
                         </div>
                     </div>
                 </div>
@@ -303,7 +198,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Selamat Datang<br> Jimbung Industrial</strong></h1>
                             <p class="m-b-40">Solution Patner yaitu menjalin kemitraan usaha yang sustainability dengan feedback saling menguntungkan </p>
-                            <p><a class="btn hvr-hover" href="#">Belanja Sekarang</a></p>
+                            <p><a class="btn hvr-hover" href="@{/user/shop}">Belanja Sekarang</a></p>
                         </div>
                     </div>
                 </div>
@@ -436,48 +331,55 @@
             </div>
         </div>
     </div> -->
-    <div class="latest-blog">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>Artikel</h1>
-                        <p>Berikut ini adalah tips & trick memilih bahan yang sesuai dengan kebutuhan dan keinginan Anda.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 col-xl-4" th:each="blog : ${blogs}">
-                    <div class="blog-box">
-                        <div class="blog-img">
-                            <img class="img-fluid fit" th:src="${blog.photosImagePath}" alt="" />
+            <div class="latest-blog">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="title-all text-center">
+                                <h1>Artikel</h1>
+                                <p th:if="${not #lists.isEmpty(blogs)}">
+                                    Berikut ini adalah tips & trick memilih bahan yang sesuai dengan kebutuhan dan keinginan Anda.
+                                </p>
+                                <p th:unless="${not #lists.isEmpty(blogs)}">
+                                    Tidak ada artikel yang tersedia.
+                                </p>
+                            </div>
                         </div>
-                        <div class="blog-content">
-                            <div class="title-blog">
-                                <h3 th:text="${blog.name}"></h3>
-                                <p th:text="${blog.deskripsi}"></p>
-                                <a href="#" class="open-modal" 
-                                data-id="${blog.id}" 
-                                data-name="${blog.name}" 
-                                data-image="${blog.photosImagePath}" 
-                                data-description="${blog.deskripsi}">Baca Selengkapnya...</a>
+                    </div>
+                    <div class="row">
+                        <!-- Iterating over blog items -->
+                        <div class="col-md-6 col-lg-4 col-xl-4" th:each="blog : ${blogs}">
+                            <div class="blog-box">
+                                <div class="blog-img">
+                                    <img class="img-fluid fit" th:src="@{${blog.photosImagePath}}" alt="" />
+                                </div>
+                                <div class="blog-content">
+                                    <div class="title-blog">
+                                        <h3 th:text="${blog.name}"></h3>
+                                        <!-- <p th:text="${blog.deskripsi}"></p> -->
+                                        <a href="#" class="open-modal"
+                                           th:data-id="${blog.id}"
+                                           th:data-name="${blog.name}"
+                                           th:data-image="@{${blog.photosImagePath}}"
+                                           th:data-description="${blog.deskripsi}">Baca Selengkapnya...</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Modal HTML -->
-    <div id="blogModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <img class="img-fluid fit mx-auto" id="modalImage" src="" alt="">
-            <h3 id="modalTitle"></h3>
-            <p id="modalDescription"></p>
-        </div>
-    </div>
+            
+            <!-- Modal HTML -->
+            <div id="blogModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <img class="img-fluid fit mx-auto" id="modalImage" src="" alt="">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDescription"></p>
+                </div>
+            </div>
+        
 
     <!-- End Blog  -->
     <!-- Start Instagram Feed  -->
@@ -487,7 +389,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{/assets/img/instagram-img-01.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -495,7 +397,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{/assets/img/instagram-img-02.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -503,7 +405,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{/assets/img/instagram-img-03.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -511,7 +413,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{/assets/img/instagram-img-04.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -519,7 +421,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{assets/img/instagram-img-05.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -527,7 +429,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{assets/img/instagram-img-06.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -535,7 +437,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{assets/img/instagram-img-07.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -543,7 +445,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{assets/img/instagram-img-08.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -551,7 +453,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{assets/img/instagram-img-09.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -559,7 +461,7 @@
                 <div class="ins-inner-box">
                     <img th:src="@{assets/img/instagram-img-05.jpg}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/jimbungindustrial/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -683,32 +585,35 @@
         });
     </script> -->
     <script>
-       var modals = document.querySelectorAll('.modal');
-        var openButtons = document.querySelectorAll('.open-modal');
-        var modalImage = document.getElementById('modalImage');
-        var modalTitle = document.getElementById('modalTitle');
-        var modalDescription = document.getElementById('modalDescription');
-        
-        openButtons.forEach(function (button) {
-            button.addEventListener('click', function (event) {
-                event.preventDefault();
-                var blogId = this.getAttribute('data-id');
-                var blogName = this.getAttribute('data-name');
-                var blogImage = this.getAttribute('data-image');
-                var blogDescription = this.getAttribute('data-description');
-    
-                modalImage.src = blogImage;
-                modalTitle.textContent = blogName;
-                modalDescription.textContent = blogDescription;
-                modals[0].style.display = 'block';
+        document.addEventListener('DOMContentLoaded', function () {
+            var modals = document.querySelectorAll('.modal');
+            var openButtons = document.querySelectorAll('.open-modal');
+            var modalImage = document.getElementById('modalImage');
+            var modalTitle = document.getElementById('modalTitle');
+            var modalDescription = document.getElementById('modalDescription');
+
+            openButtons.forEach(function (button) {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var blogId = this.getAttribute('data-id');
+                    var blogName = this.getAttribute('data-name');
+                    var blogImage = this.getAttribute('data-image');
+                    var blogDescription = this.getAttribute('data-description');
+
+                    modalImage.src = blogImage;
+                    modalTitle.textContent = blogName;
+                    modalDescription.textContent = blogDescription;
+                    modals[0].style.display = 'block';
+                });
+            });
+
+            var closeButtons = document.querySelectorAll('.close');
+            closeButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    modals[0].style.display = 'none';
+                });
             });
         });
-        var closeButtons = document.querySelectorAll('.close');
-        closeButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                modals[0].style.display = 'none';
-            });
-        })
     </script>
     
 </body>

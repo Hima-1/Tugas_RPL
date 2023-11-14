@@ -1,6 +1,12 @@
 package com.kel5.ecommerce.controller;
 
+import com.kel5.ecommerce.entity.Product;
+import com.kel5.ecommerce.entity.User;
+import com.kel5.ecommerce.repository.CategoryRepository;
+import com.kel5.ecommerce.repository.ProductRepository;
+import com.kel5.ecommerce.repository.UserRepository;
 import com.kel5.ecommerce.service.*;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
     @Autowired
     private UserService userService;
-
+    
+    @Autowired
+    private ProductRepository productRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
+    
     private String getLogedinUsername() {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
@@ -30,35 +42,50 @@ public class AdminController {
 //        String username = getLogedinUsername();
 //        return "admin";
 //    }
-    
+
     @GetMapping("/")
-    public ModelAndView DashboardAdmin(Model model) {
-        ModelAndView mv = new ModelAndView("admin/index");
-        return mv;
+    public String DashboardAdmin(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        List<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
+        return "admin/index";
     }
 
     @GetMapping("/pesanan")
-    public ModelAndView Pesanan(Model model) {
-        return new ModelAndView("admin/pesanan");
+    public String Pesanan(Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
+        return "admin/pesanan";
     }
 
     @GetMapping("/pelanggan")
-    public ModelAndView Pelanggan(Model model) {
-        return new ModelAndView("admin/pelanggan");
+    public String Pelanggan(Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
+        return "admin/pelanggan";
     }
     
     @GetMapping("/pesanan/detail")
-    public ModelAndView DetailPesanan(Model model) {
-        return new ModelAndView("admin/rician_pesanan");
+    public String DetailPesanan(Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
+        return "admin/rician_pesanan";
     }
     
     @GetMapping("/produk/detail")
-    public ModelAndView DetailProduk(Model model) {
-        return new ModelAndView("admin/rician_produk");
+    public String DetailProduk(Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
+        return "admin/rician_produk";
     }
     
     @GetMapping("/profil")
-    public ModelAndView ViewProfile(Model model) {
-        return new ModelAndView("admin/admins-profile");
+    public String ViewProfile(Model model) {
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
+        return "admin/admins-profile";
     }
 }

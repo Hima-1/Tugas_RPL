@@ -6,7 +6,9 @@ package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.util.FileUploadUtil;
 import com.kel5.ecommerce.entity.Blog;
+import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.service.BlogService;
+import com.kel5.ecommerce.service.UserService;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +40,13 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
     
+    @Autowired
+    private UserService userService;
+    
     @GetMapping("/artikel")
-    public String viewHomePage(Model model){
+    public String viewHomePage(Model model){ 
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return findPaginated(1, "id", "asc", model);
     }
     
@@ -48,6 +55,8 @@ public class BlogController {
         List<Blog> listBlog = blogService.getAllBlog(keyword);
         model.addAttribute("listBlog", listBlog);
         model.addAttribute("keyword", keyword);
+                User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return "admin/artikel";
     }
     
@@ -55,6 +64,8 @@ public class BlogController {
     public String Project2(Model model){
         Blog blog = new Blog();
         model.addAttribute("blog", blog);
+                User user = userService.getUserLogged();
+        model.addAttribute("user", user);
         return "admin/addBlogsForm";
     }
 
@@ -74,12 +85,15 @@ public class BlogController {
      public String UpdateImage(@PathVariable(value="id") long id, Model model){
          Blog blog = blogService.getBlogById(id);
          model.addAttribute("blog", blog);
+                 User user = userService.getUserLogged();
+        model.addAttribute("user", user);
          return "admin/updateBlogsForm";        
     }
      
      @GetMapping("/deleteBlog/{id}")
      public String deleteBlog(@PathVariable(value ="id") long id){
          this.blogService.deleteBlogById(id);
+         
          return"redirect:/admin/artikel";
     }
      
@@ -89,6 +103,8 @@ public class BlogController {
             @RequestParam("sortDir") String sortDir,
                     Model model){
          int pageSize = 3;
+        User user = userService.getUserLogged();
+        model.addAttribute("user", user);
          
          Page<Blog> page = blogService.findPaginated(pageNo, pageSize, sortField, sortDir);
          List<Blog> listBlog = page.getContent();

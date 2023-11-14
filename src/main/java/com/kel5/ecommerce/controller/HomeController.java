@@ -19,54 +19,5 @@ public class HomeController {
     public String home () {
         return"redirect:/user/";
     }
-    
-    @GetMapping("/index")
-    public String index () {
-        return "user/index";
-    }
-    
-    @GetMapping("/shop")
-    public String shop(){
-        return "user/shop";
-    }    
-    
-    @GetMapping("/shop-detail")
-    public String shopDetail(){
-        return "user/shop-detail";
-    }    
-    
-    @GetMapping("/about")
-    public String about(){
-        return "user/about";
-    }    
-    
-    @GetMapping("/cart")
-    public String cart(){
-        return "user/cart";
-    }    
-    
-    @GetMapping("/checkout")
-    public String checkout(){
-        return "user/checkout";
-    }    
-    
-    @GetMapping("/contact-us")
-    public String contactUs(){
-        return "user/contact-us";
-    }    
-    
-    @GetMapping("/my-account")
-    public String myAccount(){
-        return "user/my-account";
-    }    
-    
-    @GetMapping("/service")
-    public String service(){
-        return "user/service";
-    }    
-    
-    @GetMapping("/wishlist")
-    public String wishlist(){
-        return "user/wishlist";
-    }    
+  
 }
