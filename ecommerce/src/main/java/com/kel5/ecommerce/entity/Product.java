@@ -30,7 +30,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "product_id")
-    private List<Image> image = new ArrayList<>();
+    private List<Image> image;
 
     private String status;
 

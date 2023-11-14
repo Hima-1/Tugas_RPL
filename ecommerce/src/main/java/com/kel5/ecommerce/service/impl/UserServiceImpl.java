@@ -23,6 +23,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static com.kel5.ecommerce.mapper.UserMapper.mapToUserDto;
+import com.kel5.ecommerce.repository.CartRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
@@ -35,6 +37,9 @@ public class UserServiceImpl implements UserService {
     private final ConfirmationTokenRepository confirmationTokenRepository;
 
     private final EmailService emailService;
+    
+    @Autowired
+    private CartRepository cartRepository;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, ConfirmationTokenRepository confirmationTokenRepository, EmailService emailService) {
         this.userRepository = userRepository;
@@ -138,11 +143,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public void confirmEmail(String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
-            User user = userRepository.findByEmail(token.getUser().getEmail());
-            if (user != null) {
-                user.setEnabled(true);
-                userRepository.save(user);
-            }
+        User user = userRepository.findByEmail(token.getUser().getEmail());
+        if (user != null) {
+            user.setEnabled(true);
+
+            // Buat instance baru dari Cart
+            Cart newCart = new Cart();
+            newCart.setUser(user);
+            // Simpan Cart ke database
+            // Pastikan Anda memiliki CartRepository untuk melakukan operasi ini
+            cartRepository.save(newCart);
+
+            // Setelah Cart disimpan, tetapkan ke user
+            user.setCarts(newCart);
+
+            // Simpan perubahan pada user
+            userRepository.save(user);
+        }
     }
 
     @Override

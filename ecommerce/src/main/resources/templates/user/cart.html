@@ -297,9 +297,15 @@
                             </thead>
                             <tbody>
                                 <tr th:each="item, iterStat : ${cart.cartItems}">
+<!--                                    <td class="thumbnail-img" th:each="images, iterStat : ${item.image}" th:if="${iterStat.index == 0}">
+                                        <img class="img-fluid" th:src="@{${images.url}}" alt="Product Image" width="200" />
+                                    </td>-->
                                     <td class="thumbnail-img">
-                                            <img class="img-fluid" th:src="@{/assets/img/img-pro-01.jpg}" alt="" />
+                                        <img class="img-fluid" th:src="@{${item.productUrl}}" alt="Product Image" width="200" />
                                     </td>
+<!--                                    <td class="thumbnail-img">
+                                        <p th:text="${image.url}"></p>
+                                    </td>-->
                                     <td class="name-pr">
                                         <a th:text="${item.productName}"></a>
                                     </td>

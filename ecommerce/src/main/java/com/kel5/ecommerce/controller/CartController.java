@@ -38,7 +38,7 @@ public class CartController {
                             @RequestParam("quantity") Integer quantity) {
         System.out.println("Added product " + productId + " with quantity " + quantity + " to cart.");
         cartService.addProductToCart(productId, quantity, currentUser);
-        return "redirect:/user/shop-detail";
+        return "redirect:/user/cart";
     }
 
     @GetMapping("/cart")

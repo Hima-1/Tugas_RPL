@@ -1,9 +1,12 @@
 package com.kel5.ecommerce.controller;
 
 import com.kel5.ecommerce.dto.ProductDto;
+import com.kel5.ecommerce.entity.Category;
+import com.kel5.ecommerce.entity.Subcategory;
 import com.kel5.ecommerce.entity.Product;
 import com.kel5.ecommerce.entity.User;
 import com.kel5.ecommerce.exception.ResourceNotFoundException;
+import com.kel5.ecommerce.service.CategoryService;
 import com.kel5.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,6 +26,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/produk")
     public String viewHomePage(Model model) {
@@ -40,7 +46,6 @@ public class ProductController {
     // To display the form for adding a product
     @GetMapping("/add-product")
     public String showAddProductForm(Model model) {
-        model.addAttribute("productDto", new ProductDto());
         return "admin/addProductForm";
     }
 

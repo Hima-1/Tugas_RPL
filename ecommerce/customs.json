@@ -1,6 +1,12 @@
 {
     "elements": {},
     "attributes": {
-        "th:href": {}
+        "th:id": {
+            "context": "div"
+        },
+        "th:href": {},
+        "th:attr": {
+            "context": "a"
+        }
     }
 }
